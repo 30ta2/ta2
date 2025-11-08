@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="風格指南">
+  <title>刺青風格完整指南 - 刺青工作室</title>
+  <style>
+    :root {
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-border: rgba(94, 82, 64, 0.2);
+      --color-card-border: rgba(94, 82, 64, 0.12);
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
+      --font-size-base: 14px;
+      --font-size-lg: 18px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-weight-bold: 700;
+      --font-weight-semibold: 600;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-96: 96px;
+      --radius-base: 8px;
+      --radius-lg: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: #262828;
+        --color-text: #e5e5e5;
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-family-base); color: var(--color-text); background: var(--color-background); }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-card-border); }
+    .nav__container { max-width: 1200px; margin: 0 auto; padding: var(--space-16) var(--space-24); display: flex; justify-content: space-between; }
+    .nav__brand { font-size: 20px; font-weight: var(--font-weight-bold); text-decoration: none; color: var(--color-text); }
+    .nav__back { color: var(--color-primary); text-decoration: none; font-weight: 500; }
+    .article { padding: var(--space-96) var(--space-24) var(--space-64); max-width: 900px; margin: 0 auto; }
+    .article__title { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-16); }
+    .article__content { background: var(--color-surface); border: 1px solid var(--color-card-border); border-radius: var(--radius-lg); padding: var(--space-48); line-height: 1.8; }
+    .article__content h2 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin: var(--space-32) 0 var(--space-16); }
+    .article__content p { margin-bottom: var(--space-16); }
+    .article__content ul { margin: var(--space-16) 0 var(--space-16) var(--space-32); }
+    .article__content li { margin-bottom: var(--space-12); }
+    .style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); margin: var(--space-24) 0; }
+    .style-card { background: var(--color-background); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-24); }
+    .style-card h3 { font-size: var(--font-size-lg); margin-bottom: var(--space-12); }
+    @media (max-width: 768px) { .style-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">刺青工作室</a>
+      <a href="index.html" class="nav__back">← 返回首頁</a>
+    </div>
+  </nav>
+
+  <article class="article">
+    <h1 class="article__title">🌟 刺青風格完整指南</h1>
+    
+    <div class="article__content">
+      <h2>刺青的多種風格</h2>
+      <p>刺青藝術有許多不同的風格，每種風格都有其獨特的特徵和美學。了解這些風格將幫助您選擇最符合您個性的設計。</p>
+
+      <div class="style-grid">
+        <div class="style-card">
+          <h3>🔴 傳統風格（Traditional）</h3>
+          <p>特色：粗黑線條、飽和色彩、簡潔有力。源自西方水手刺青文化。適合希望有復古感且經典的人。</p>
+        </div>
+        <div class="style-card">
+          <h3>📍 寫實風格（Realism）</h3>
+          <p>特色：高度寫實、細節豐富、光影逼真。通常是黑灰色，可以刺青人物、動物或景物。</p>
+        </div>
+        <div class="style-card">
+          <h3>🎨 水彩風格（Watercolor）</h3>
+          <p>特色：流暢的色彩過渡、模糊邊界、藝術感強。看起來像水彩畫在皮膚上。</p>
+        </div>
+        <div class="style-card">
+          <h3>⬜ 幾何風格（Geometric）</h3>
+          <p>特色：幾何圖形、對稱、精確的線條。現代感十足，適合追求簡約風格的人。</p>
+        </div>
+        <div class="style-card">
+          <h3>🎯 點刺風格（Dotwork）</h3>
+          <p>特色：由數千個小點組成、漸層效果、耐看。需要經驗豐富的刺青師。</p>
+        </div>
+        <div class="style-card">
+          <h3>🏛️ 新傳統風格（Neo-Traditional）</h3>
+          <p>特色：介於傳統和現代之間、線條更細、色彩更多樣。保留傳統感但更現代。</p>
+        </div>
+      </div>
+
+      <h2>如何選擇適合的風格？</h2>
+      <p>選擇刺青風格時，考慮以下因素：</p>
+      <ul>
+        <li><strong>個人風格：</strong>您喜歡復古還是現代？簡潔還是複雜？</li>
+        <li><strong>皮膚狀況：</strong>不同風格對皮膚的適應性不同</li>
+        <li><strong>刺青位置：</strong>某些風格在特定部位效果更好</li>
+        <li><strong>長期保養：</strong>有些風格比其他風格更容易褪色</li>
+        <li><strong>預算：</strong>複雜的風格通常需要更高的費用</li>
+      </ul>
+
+      <h2>不同風格的持久性</h2>
+      <p>並非所有風格都能保持相同的清晰度。水彩和點刺風格在多年後可能需要補色，而傳統和幾何風格通常更耐久。</p>
+
+      <h2>與刺青師的溝通</h2>
+      <p>選擇您喜歡的風格後，與您的刺青師詳細溝通。帶上參考圖片，討論可行性、預計時間和預算。經驗豐富的刺青師可以根據您的需求推薦最佳方案。</p>
+    </div>
+  </article>
+</body>
+</html>
