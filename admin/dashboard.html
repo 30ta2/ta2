@@ -414,17 +414,29 @@
       max-height: 80vh;
       overflow: auto;
       padding: 24px;
+      position: relative;
     }
 
     .preview-modal__close {
       position: absolute;
-      top: 24px;
-      right: 24px;
+      top: 16px;
+      right: 16px;
       background: none;
       border: none;
       color: var(--color-accent-cyan);
       font-size: 28px;
       cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .preview-modal__close:hover {
+      color: var(--color-accent-purple);
+      transform: scale(1.2);
     }
 
     @media (max-width: 1024px) {
@@ -616,25 +628,24 @@
 
   <!-- Preview Modal -->
   <div class="preview-modal" id="previewModal">
-    <button class="preview-modal__close" onclick="closePreview()">✕</button>
-    <div class="preview-modal__content" id="previewContent"></div>
+    <div class="preview-modal__content">
+      <button class="preview-modal__close" onclick="closePreview()">✕</button>
+      <div id="previewContent"></div>
+    </div>
   </div>
 
   <script>
     // 切換Section功能
     function switchSection(section) {
-      // 隱藏所有section
       document.querySelectorAll('.content-section').forEach(el => {
         el.classList.remove('active');
       });
       
-      // 更新sidebar
       document.querySelectorAll('.sidebar__item').forEach(el => {
         el.classList.remove('active');
       });
       event.target.closest('.sidebar__item').classList.add('active');
       
-      // 顯示選中的section
       document.getElementById(section).classList.add('active');
     }
 
@@ -769,6 +780,7 @@
         messages.splice(idx, 1);
         localStorage.setItem('tattoo_contact_messages', JSON.stringify(messages));
         renderMessagesList();
+        initDashboard();
       }
     }
 
@@ -818,10 +830,10 @@
       event.target.classList.add('active');
     }
 
-    // 登出功能
+    // ✅ 修復：登出功能 - 使用相對路徑回到上層目錄
     function logout() {
       if (confirm('確認登出？')) {
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
       }
     }
 
