@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="管理系統">
+  <title>管理系統 - 隱藏後台</title>
+  
+  <style>
+    :root {
+      --color-dark-bg: #0a0e27;
+      --color-dark-surface: #1a1f3a;
+      --color-dark-secondary: #252d48;
+      --color-accent-cyan: #00d9ff;
+      --color-accent-purple: #8b5cf6;
+      --color-accent-green: #10b981;
+      --color-text-primary: #e0e7ff;
+      --color-text-secondary: #a5b4fc;
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
+      --radius-lg: 12px;
+      --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      background: linear-gradient(135deg, var(--color-dark-bg) 0%, #1a1f3a 100%);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Header Navigation */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 39, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+      padding: 16px 24px;
+    }
+
+    .header__container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header__title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-accent-cyan);
+      text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+    }
+
+    .header__logout {
+      padding: 8px 16px;
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--color-accent-purple);
+      border: 1px solid var(--color-accent-purple);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .header__logout:hover {
+      background: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    }
+
+    /* Main Layout */
+    .main {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 100px 24px 48px;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: rgba(26, 31, 58, 0.5);
+      border: 1px solid rgba(139, 92, 246, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar__item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--color-text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .sidebar__item:hover,
+    .sidebar__item.active {
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--color-accent-cyan);
+      box-shadow: inset 0 0 10px rgba(0, 217, 255, 0.1);
+    }
+
+    .sidebar__icon {
+      font-size: 20px;
+    }
+
+    /* Content Grid */
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+      grid-column: 1 / -1;
+    }
+
+    /* Dashboard Cards */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(26, 31, 58, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-purple));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card__icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .card__title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-accent-cyan);
+      margin-bottom: 8px;
+    }
+
+    .card__value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-accent-purple);
+      margin-bottom: 8px;
+    }
+
+    .card__description {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    /* List Styles */
+    .list {
+      background: rgba(26, 31, 58, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .list__header {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 16px;
+      padding: 16px 24px;
+      background: rgba(139, 92, 246, 0.1);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+      font-weight: 600;
+      color: var(--color-accent-cyan);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .list__item {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 16px;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .list__item:hover {
+      background: rgba(139, 92, 246, 0.05);
+    }
+
+    .list__name {
+      color: var(--color-text-primary);
+    }
+
+    .list__time {
+      color: var(--color-text-secondary);
+      font-size: 13px;
+    }
+
+    .list__status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .list__status.success {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--color-accent-green);
+    }
+
+    .list__status.pending {
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--color-accent-purple);
+    }
+
+    .list__action {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn--view {
+      background: rgba(0, 217, 255, 0.2);
+      color: var(--color-accent-cyan);
+      border: 1px solid var(--color-accent-cyan);
+    }
+
+    .btn--view:hover {
+      background: rgba(0, 217, 255, 0.3);
+      box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+    }
+
+    .btn--delete {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid #f87171;
+    }
+
+    .btn--delete:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+
+    /* Search Bar */
+    .search-bar {
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      background: rgba(26, 31, 58, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 8px;
+      color: var(--color-text-primary);
+      font-size: 14px;
+    }
+
+    .search-input::placeholder {
+      color: var(--color-text-secondary);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-accent-cyan);
+      box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+    }
+
+    .filter-btn {
+      padding: 12px 16px;
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 8px;
+      color: var(--color-accent-purple);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(139, 92, 246, 0.3);
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      border-radius: 20px;
+      color: var(--color-accent-purple);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover,
+    .tag.active {
+      background: rgba(139, 92, 246, 0.4);
+      border-color: var(--color-accent-purple);
+    }
+
+    /* Preview Modal */
+    .preview-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .preview-modal.active {
+      display: flex;
+    }
+
+    .preview-modal__content {
+      background: var(--color-dark-surface);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: var(--radius-lg);
+      max-width: 900px;
+      width: 100%;
+      max-height: 80vh;
+      overflow: auto;
+      padding: 24px;
+    }
+
+    .preview-modal__close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--color-accent-cyan);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position: static;
+        height: auto;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .list__header,
+      .list__item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 12px 16px;
+      }
+
+      .main {
+        padding: 80px 16px 32px;
+        gap: 16px;
+      }
+
+      .sidebar {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 16px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__container">
+      <div class="header__title">🔐 管理系統</div>
+      <button class="header__logout" onclick="logout()">登出</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar__title">📋 功能菜單</div>
+      <div class="sidebar__item active" onclick="switchSection('dashboard')">
+        <span class="sidebar__icon">📊</span>
+        <span>儀表板</span>
+      </div>
+      <div class="sidebar__item" onclick="switchSection('content')">
+        <span class="sidebar__icon">📄</span>
+        <span>內容管理</span>
+      </div>
+      <div class="sidebar__item" onclick="switchSection('appointments')">
+        <span class="sidebar__icon">📅</span>
+        <span>預約記錄</span>
+      </div>
+      <div class="sidebar__item" onclick="switchSection('messages')">
+        <span class="sidebar__icon">💬</span>
+        <span>訊息管理</span>
+      </div>
+    </aside>
+
+    <!-- Content Area -->
+    <div class="content">
+      <!-- Dashboard Section -->
+      <section class="content-section active" id="dashboard">
+        <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--color-accent-cyan);">📊 儀表板</h2>
+        
+        <div class="dashboard">
+          <div class="card">
+            <div class="card__icon">📅</div>
+            <div class="card__title">總預約數</div>
+            <div class="card__value" id="totalAppointments">0</div>
+            <div class="card__description">本月新增預約</div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon">💬</div>
+            <div class="card__title">未讀訊息</div>
+            <div class="card__value" id="unreadMessages">0</div>
+            <div class="card__description">等待回覆</div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon">📊</div>
+            <div class="card__title">轉換率</div>
+            <div class="card__value">87%</div>
+            <div class="card__description">諮詢轉預約</div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon">⭐</div>
+            <div class="card__title">客戶評分</div>
+            <div class="card__value">4.9</div>
+            <div class="card__description">平均評分</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Management Section -->
+      <section class="content-section" id="content">
+        <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--color-accent-cyan);">📄 內容管理</h2>
+        
+        <div style="margin-bottom: 24px;">
+          <div class="tags" id="categoryTags">
+            <span class="tag active" onclick="filterByCategory('all')">全部</span>
+            <span class="tag" onclick="filterByCategory('article')">文章</span>
+            <span class="tag" onclick="filterByCategory('portfolio')">作品集</span>
+            <span class="tag" onclick="filterByCategory('guide')">指南</span>
+          </div>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" class="search-input" placeholder="搜尋HTML檔案..." />
+          <button class="filter-btn">🔍 搜尋</button>
+        </div>
+
+        <div class="list">
+          <div class="list__header">
+            <div>檔案名稱</div>
+            <div>分類</div>
+            <div>修改時間</div>
+            <div>操作</div>
+          </div>
+          <div id="contentList"></div>
+        </div>
+      </section>
+
+      <!-- Appointments Section -->
+      <section class="content-section" id="appointments">
+        <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--color-accent-cyan);">📅 預約紀錄</h2>
+        
+        <div class="search-bar">
+          <input type="text" class="search-input" placeholder="搜尋預約..." />
+          <button class="filter-btn">🔍 搜尋</button>
+        </div>
+
+        <div class="list">
+          <div class="list__header">
+            <div>客戶名稱</div>
+            <div>預約日期</div>
+            <div>狀態</div>
+            <div>操作</div>
+          </div>
+          <div id="appointmentsList"></div>
+        </div>
+      </section>
+
+      <!-- Messages Section -->
+      <section class="content-section" id="messages">
+        <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--color-accent-cyan);">💬 訊息管理</h2>
+        
+        <div class="search-bar">
+          <input type="text" class="search-input" placeholder="搜尋訊息..." />
+          <button class="filter-btn">🔍 搜尋</button>
+        </div>
+
+        <div class="list">
+          <div class="list__header">
+            <div>發送者</div>
+            <div>主旨</div>
+            <div>時間</div>
+            <div>操作</div>
+          </div>
+          <div id="messagesList"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div class="preview-modal" id="previewModal">
+    <button class="preview-modal__close" onclick="closePreview()">✕</button>
+    <div class="preview-modal__content" id="previewContent"></div>
+  </div>
+
+  <script>
+    // 切換Section功能
+    function switchSection(section) {
+      // 隱藏所有section
+      document.querySelectorAll('.content-section').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // 更新sidebar
+      document.querySelectorAll('.sidebar__item').forEach(el => {
+        el.classList.remove('active');
+      });
+      event.target.closest('.sidebar__item').classList.add('active');
+      
+      // 顯示選中的section
+      document.getElementById(section).classList.add('active');
+    }
+
+    // ===== localStorage 數據載入 =====
+    function loadAppointmentsData() {
+      const appointments = JSON.parse(localStorage.getItem('tattoo_appointments') || '[]');
+      return appointments;
+    }
+
+    function loadMessagesData() {
+      const messages = JSON.parse(localStorage.getItem('tattoo_contact_messages') || '[]');
+      return messages;
+    }
+
+    // 初始化儀表板
+    function initDashboard() {
+      const appointments = loadAppointmentsData();
+      const messages = loadMessagesData();
+      
+      document.getElementById('totalAppointments').textContent = appointments.length;
+      document.getElementById('unreadMessages').textContent = messages.length;
+    }
+
+    // 渲染內容列表
+    function renderContentList() {
+      const files = [
+        { name: 'index.html', category: '主頁', modified: '今天' },
+        { name: 'article1.html', category: '文章', modified: '2天前' },
+        { name: 'article2.html', category: '文章', modified: '2天前' },
+        { name: 'article3.html', category: '文章', modified: '2天前' },
+        { name: 'appointment.html', category: '表單', modified: '昨天' },
+        { name: 'contact.html', category: '表單', modified: '昨天' },
+        { name: 'project1.html', category: '作品集', modified: '3天前' },
+        { name: 'project2.html', category: '工具', modified: '3天前' }
+      ];
+
+      const html = files.map(file => `
+        <div class="list__item">
+          <div class="list__name">📄 ${file.name}</div>
+          <div class="list__time">${file.category}</div>
+          <div class="list__time">${file.modified}</div>
+          <div class="list__action">
+            <button class="btn btn--view" onclick="previewFile('${file.name}')">預覽</button>
+            <button class="btn btn--delete">刪除</button>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('contentList').innerHTML = html || '<div class="list__item">暫無內容</div>';
+    }
+
+    // 渲染預約列表
+    function renderAppointmentsList() {
+      const appointments = loadAppointmentsData();
+      
+      const html = appointments.map(apt => `
+        <div class="list__item">
+          <div class="list__name">${apt.name}</div>
+          <div class="list__time">${apt.date}</div>
+          <div><span class="list__status success">✓ 已預約</span></div>
+          <div class="list__action">
+            <button class="btn btn--view" onclick="viewAppointment('${apt.name}')">查看</button>
+            <button class="btn btn--delete" onclick="deleteAppointment('${apt.name}')">刪除</button>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('appointmentsList').innerHTML = html || '<div class="list__item">暫無預約</div>';
+    }
+
+    // 渲染訊息列表
+    function renderMessagesList() {
+      const messages = loadMessagesData();
+      
+      const html = messages.map((msg, idx) => `
+        <div class="list__item">
+          <div class="list__name">${msg.name}</div>
+          <div class="list__time">${msg.subject}</div>
+          <div class="list__time">${new Date(msg.timestamp).toLocaleDateString('zh-TW')}</div>
+          <div class="list__action">
+            <button class="btn btn--view" onclick="viewMessage(${idx})">查看</button>
+            <button class="btn btn--delete" onclick="deleteMessage(${idx})">刪除</button>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('messagesList').innerHTML = html || '<div class="list__item">暫無訊息</div>';
+    }
+
+    // 預覽功能
+    function previewFile(filename) {
+      document.getElementById('previewModal').classList.add('active');
+      document.getElementById('previewContent').innerHTML = `
+        <h3 style="color: var(--color-accent-cyan); margin-bottom: 16px;">
+          📄 ${filename}
+        </h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6;">
+          檔案預覽功能：<br>
+          在實際應用中，此處會顯示HTML檔案的源代碼或渲染預覽。<br>
+          目前支持的操作：編輯、下載、發佈等。
+        </p>
+        <div style="margin-top: 24px; padding: 16px; background: rgba(139, 92, 246, 0.1); border-radius: 8px; border-left: 3px solid var(--color-accent-cyan);">
+          <strong>技巧：</strong> 連接後端後，可以實現實時編輯和版本控制。
+        </div>
+      `;
+    }
+
+    // 查看訊息
+    function viewMessage(idx) {
+      const messages = loadMessagesData();
+      const msg = messages[idx];
+      
+      document.getElementById('previewModal').classList.add('active');
+      document.getElementById('previewContent').innerHTML = `
+        <h3 style="color: var(--color-accent-cyan); margin-bottom: 16px;">💬 ${msg.subject}</h3>
+        <div style="color: var(--color-text-secondary); margin-bottom: 16px;">
+          <div><strong>發送者：</strong> ${msg.name}</div>
+          <div><strong>郵件：</strong> ${msg.email}</div>
+          <div><strong>電話：</strong> ${msg.phone}</div>
+          <div><strong>時間：</strong> ${new Date(msg.timestamp).toLocaleString('zh-TW')}</div>
+        </div>
+        <div style="padding: 16px; background: rgba(139, 92, 246, 0.1); border-radius: 8px; color: var(--color-text-primary);">
+          ${msg.message}
+        </div>
+      `;
+    }
+
+    // 刪除訊息
+    function deleteMessage(idx) {
+      if (confirm('確認刪除此訊息？')) {
+        let messages = loadMessagesData();
+        messages.splice(idx, 1);
+        localStorage.setItem('tattoo_contact_messages', JSON.stringify(messages));
+        renderMessagesList();
+      }
+    }
+
+    // 查看預約
+    function viewAppointment(name) {
+      const appointments = loadAppointmentsData();
+      const apt = appointments.find(a => a.name === name);
+      
+      if (apt) {
+        document.getElementById('previewModal').classList.add('active');
+        document.getElementById('previewContent').innerHTML = `
+          <h3 style="color: var(--color-accent-cyan); margin-bottom: 16px;">📅 預約詳情</h3>
+          <div style="color: var(--color-text-secondary);">
+            <div><strong>姓名：</strong> ${apt.name}</div>
+            <div><strong>電話：</strong> ${apt.phone}</div>
+            <div><strong>郵件：</strong> ${apt.email}</div>
+            <div><strong>日期：</strong> ${apt.date}</div>
+            <div><strong>風格：</strong> ${apt.style}</div>
+            <div><strong>位置：</strong> ${apt.position}</div>
+            <div><strong>描述：</strong> ${apt.description}</div>
+          </div>
+        `;
+      }
+    }
+
+    // 刪除預約
+    function deleteAppointment(name) {
+      if (confirm('確認刪除此預約？')) {
+        let appointments = loadAppointmentsData();
+        appointments = appointments.filter(a => a.name !== name);
+        localStorage.setItem('tattoo_appointments', JSON.stringify(appointments));
+        renderAppointmentsList();
+        initDashboard();
+      }
+    }
+
+    // 關閉預覽
+    function closePreview() {
+      document.getElementById('previewModal').classList.remove('active');
+    }
+
+    // 分類篩選
+    function filterByCategory(category) {
+      document.querySelectorAll('#categoryTags .tag').forEach(tag => {
+        tag.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+
+    // 登出功能
+    function logout() {
+      if (confirm('確認登出？')) {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // 初始化
+    window.addEventListener('load', () => {
+      initDashboard();
+      renderContentList();
+      renderAppointmentsList();
+      renderMessagesList();
+    });
+
+    // 點擊modal外部關閉
+    document.getElementById('previewModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePreview();
+      }
+    });
+  </script>
+</body>
+</html>
