@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="刺青工作室">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBHf/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5Yia6Z2S5bel5L2c5a6kIiwic2hvcnRfbmFtZSI6IuWIuumdkiIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBTUFBQUJsQXB3MUFBQUFObEJNVkVVYUdob3pNek5tWm1iMTlmWC8vLy9Nek14MmRuWkdSa1lBQUFEbDVlVzIydHJhWm1abUlpSWhWVlZVZ0lDQ3BxYW5Dd3NDOHZMd3Z2TVczQUFBQlFVbEVRVlI0MnUzWTJ3NkNNQkNGNGFHY1JCZS8ya0Y1Q0xHR0dmWExjVC91MjF5a1ordndBQUFBQUFBQUFBQUFBQUFBQUFQL2k2SnJ1bVV5SG0rNmVQZDEyRDZmc0p0dTladzkwRGI3WlkrMERkNWx6dHZ2SUhtZ2JmTEpIMmdCZjdMay9iMCsxRGI0Wkk5MTBKdjM5MERUNFpJOzFETzU4Lzc4K1Q2dlBkVTIrQ1RQZEEyK0dUUHRRMCtHVXZ0OTVFOTBEYjRaSCtlYWh0OE1wZnM5Mkc5MERiNGJKK2V2TlA5dDl0cnZWMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3VDl0THZWMm0rMjdrVDNRTnZoa3o3VU5QdGxMdHZ2SUhtZ2JmTEpuMndhZjdLWGI3eUI1b0czd3laNm8tRUQyWE41OVg5cHJHM3l5UjlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1R5Zi80ZTZ6dDhtbnl5NTlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1Q2YlBkUmRvR24rd2wxMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3U2Q3eVhZZjJRTnRnay8yV052Z2s3MWt1NC9zZ2JiQko7dWViYkJKM3ZKZGg5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3dTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko3dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko3dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaNEFBQUFBQUFBQUFBQWdUL29DR1RnSlFDT0lwU01BQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+  <title>刺青作品集 - 刺青工作室</title>
+  
+  <style>
+    /* Design System Variables - 與index.html保持一致 */
+    :root {
+      /* Primitive Color Tokens */
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+
+      /* RGB versions for opacity control */
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+
+      /* Semantic Color Tokens */
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+      /* Custom accent color - muted tone */
+      --color-accent: #8b7355;
+      --color-accent-light: #a89080;
+
+      /* Typography */
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-size-5xl: 48px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+
+      /* Spacing */
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+
+      /* Border Radius */
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+
+      /* Animation */
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --duration-slow: 350ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(167, 169, 169, 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-primary-active: var(--color-teal-800);
+        --color-secondary: rgba(119, 124, 124, 0.15);
+        --color-secondary-hover: rgba(119, 124, 124, 0.25);
+        --color-card-border: rgba(119, 124, 124, 0.2);
+        --color-border: rgba(119, 124, 124, 0.3);
+      }
+    }
+
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      touch-action: manipulation;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text);
+      background-color: var(--color-background);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav {
+        background: rgba(31, 33, 33, 0.95);
+      }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__back {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      transition: color var(--duration-fast) var(--ease-standard);
+    }
+
+    .nav__back:hover {
+      color: var(--color-primary-hover);
+    }
+
+    /* Section Styles */
+    .section {
+      padding: var(--space-96) var(--space-24) var(--space-80);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: var(--space-64);
+    }
+
+    .section__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-16);
+      letter-spacing: -0.02em;
+    }
+
+    .section__subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Style Cards Container */
+    .styles-slider {
+      position: relative;
+      margin-bottom: var(--space-48);
+    }
+
+    .slider-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .slider-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+      flex-shrink: 0;
+      font-size: var(--font-size-xl);
+      color: var(--color-text);
+    }
+
+    .slider-btn:hover:not(:disabled) {
+      background: var(--color-secondary-hover);
+      transform: scale(1.05);
+    }
+
+    .slider-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .styles-viewport {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .styles-container {
+      display: flex;
+      gap: var(--space-24);
+      transition: transform var(--duration-slow) var(--ease-standard);
+      padding: var(--space-8) 0;
+    }
+
+    /* Style Card */
+    .style-card {
+      flex-shrink: 0;
+      width: 280px;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-card-border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .style-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--color-primary);
+    }
+
+    .style-card__icon {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+
+    .style-card__content {
+      padding: var(--space-24);
+    }
+
+    .style-card__title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+      color: var(--color-text);
+    }
+
+    .style-card__description {
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      font-size: var(--font-size-sm);
+    }
+
+    /* Bottom Drawer */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-surface);
+      border-top-left-radius: var(--radius-xl);
+      border-top-right-radius: var(--radius-xl);
+      max-height: 80vh;
+      transform: translateY(100%);
+      transition: transform var(--duration-slow) var(--ease-standard);
+      z-index: 2001;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer.active {
+      transform: translateY(0);
+    }
+
+    .drawer__handle {
+      width: 40px;
+      height: 4px;
+      background: var(--color-border);
+      border-radius: 2px;
+      margin: var(--space-12) auto;
+      flex-shrink: 0;
+    }
+
+    .drawer__header {
+      padding: var(--space-16) var(--space-24) var(--space-24);
+      border-bottom: 1px solid var(--color-card-border);
+      flex-shrink: 0;
+    }
+
+    .drawer__title {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-8);
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+    }
+
+    .drawer__subtitle {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-base);
+    }
+
+    .drawer__content {
+      padding: var(--space-24);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-24);
+    }
+
+    .work-card {
+      background: var(--color-background);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-card-border);
+      overflow: hidden;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .work-card__icon {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+    }
+
+    .work-card__content {
+      padding: var(--space-16);
+    }
+
+    .work-card__title {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+      color: var(--color-text);
+    }
+
+    .work-card__description {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 767px) {
+      .section__title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .section {
+        padding: var(--space-64) var(--space-16) var(--space-48);
+      }
+
+      .nav__container {
+        padding: var(--space-12) var(--space-16);
+      }
+
+      .slider-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .style-card {
+        width: 240px;
+      }
+
+      .style-card__icon {
+        height: 160px;
+        font-size: 60px;
+      }
+
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drawer {
+        max-height: 85vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slider-btn {
+        display: none;
+      }
+      
+      .styles-viewport {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      
+      .styles-viewport::-webkit-scrollbar {
+        display: none;
+      }
+
+      .styles-container {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="#" class="nav__brand">刺青工作室</a>
+      <a href="#" class="nav__back">← 返回首頁</a>
+    </div>
+  </nav>
+
+  <!-- Gallery Section -->
+  <section class="section">
+    <div class="section__header">
+      <h1 class="section__title">刺青作品集</h1>
+      <p class="section__subtitle">
+        探索各種風格的刺青藝術<br>
+        從傳統到現代，從寫實到抽象
+      </p>
+    </div>
+
+    <!-- Style Cards Slider -->
+    <div class="styles-slider">
+      <div class="slider-nav">
+        <button class="slider-btn prev-btn" id="prevBtn" disabled>←</button>
+        
+        <div class="styles-viewport" id="stylesViewport">
+          <div class="styles-container" id="stylesContainer">
+            <!-- Style cards will be inserted here by JavaScript -->
+          </div>
+        </div>
+        
+        <button class="slider-btn next-btn" id="nextBtn">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer__handle"></div>
+    <div class="drawer__header">
+      <h2 class="drawer__title" id="drawerTitle"></h2>
+      <p class="drawer__subtitle" id="drawerSubtitle"></p>
+    </div>
+    <div class="drawer__content" id="drawerContent">
+      <div class="works-grid" id="worksGrid">
+        <!-- Works will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data
+    const stylesData = [
+      {
+        id: 'drawing',
+        name: '繪畫作品',
+        description: '各種繪畫風格作品',
+        icon: '🎨',
+        works: [
+          { title: '素描人像', description: '精緻的素描風格人像展現光影與質感的細膩表現', emoji: '🎨' },
+          { title: '水彩風景', description: '色彩渲染的自然風景', emoji: '🎨' }
+        ]
+      },
+      {
+        id: 'tattoo',
+        name: '刺青作品',
+        description: '專業刺青設計',
+        icon: '🔥',
+        works: [
+          { title: '傳統龍紋', description: '經典龍圖騰飽和色彩與粗黑輪廓', emoji: '🐲' },
+          { title: '鳳凰展翅', description: '力量與優雅的結合', emoji: '🔥' }
+        ]
+      },
+      {
+        id: 'realism',
+        name: '寫實',
+        description: '超寫實細節',
+        icon: '👁️',
+        works: [
+          { title: '寫實之眼', description: '超寫實眼睛刺青細節逼真', emoji: '👁️' },
+          { title: '人物肖像', description: '栩栩如生的人物刺青', emoji: '👤' }
+        ]
+      },
+      {
+        id: 'dark',
+        name: '暗黑',
+        description: '神秘暗黑風格',
+        icon: '⚫',
+        works: [
+          { title: '暗黑曼陀羅', description: '黑色點刺曼陀羅神秘而深邃', emoji: '⚫' },
+          { title: '暗黑幾何', description: '幾何圖形的暗黑表現', emoji: '⬛' }
+        ]
+      },
+      {
+        id: 'new-traditional',
+        name: '新傳統',
+        description: '現代新傳統',
+        icon: '🔥',
+        works: [
+          { title: '新傳統鳳凰', description: '融合現代元素的鳳凰色彩鮮明', emoji: '🔥' },
+          { title: '新傳統花卉', description: '現代線條的傳統花卉', emoji: '🌸' }
+        ]
+      },
+      {
+        id: 'old-traditional',
+        name: '老傳統',
+        description: '經典老傳統',
+        icon: '🐅',
+        works: [
+          { title: '老傳統虎頭', description: '經典老傳統虎頭濃郁色彩', emoji: '🐅' },
+          { title: '老傳統獅頭', description: '威武的獅子刺青', emoji: '🦁' }
+        ]
+      },
+      {
+        id: 'new-school',
+        name: 'New School',
+        description: '卡通New School',
+        icon: '🤡',
+        works: [
+          { title: '卡通小丑', description: '鮮豔色彩與誇張造型的小丑', emoji: '🤡' },
+          { title: '卡通角色', description: '可愛的卡通人物設計', emoji: '🎠' }
+        ]
+      },
+      {
+        id: 'old-school',
+        name: 'Old School',
+        description: '復古Old School',
+        icon: '⚓',
+        works: [
+          { title: '船錨與玫瑰', description: '經典Old School設計復古線條', emoji: '⚓' },
+          { title: '復古心型', description: 'Old School風格的心型設計', emoji: '❤️' }
+        ]
+      },
+      {
+        id: 'watercolor',
+        name: '水彩',
+        description: '水彩風格',
+        icon: '🎨',
+        works: [
+          { title: '水彩花卉', description: '水彩風格花卉刺青色彩渲染', emoji: '🎨' },
+          { title: '水彩動物', description: '柔和水彩風格動物', emoji: '🦋' }
+        ]
+      },
+      {
+        id: 'ink-wash',
+        name: '水墨',
+        description: '傳統水墨',
+        icon: '🖌️',
+        works: [
+          { title: '水墨山水', description: '傳統水墨山水畫墨色濃淡層次', emoji: '🖌️' },
+          { title: '水墨梅花', description: '蒼勁有力的梅花水墨畫', emoji: '🌼' }
+        ]
+      },
+      {
+        id: 'geometric',
+        name: '幾何',
+        description: '幾何線條',
+        icon: '🔷',
+        works: [
+          { title: '幾何動物', description: '幾何線條構成的動物輪廓', emoji: '🔷' },
+          { title: '幾何圖形', description: '純粹的幾何線條藝術', emoji: '🔶' }
+        ]
+      },
+      {
+        id: 'dotwork',
+        name: '點刺',
+        description: '點刺曼陀羅',
+        icon: '🔴',
+        works: [
+          { title: '點刺曼陀羅', description: '純點刺技法創作的曼陀羅精密而療癒', emoji: '🔴' },
+          { title: '點刺圖案', description: '細膩的點刺紋樣', emoji: '⚪' }
+        ]
+      },
+      {
+        id: 'script',
+        name: '花體字',
+        description: '古典花體',
+        icon: '✒️',
+        works: [
+          { title: '古典花體字', description: '優雅古典花體英文線條流暢', emoji: '✒️' },
+          { title: '花體簽名', description: '個性化的花體簽名設計', emoji: '✍️' }
+        ]
+      },
+      {
+        id: 'tribal',
+        name: '圖騰',
+        description: '部落圖騰',
+        icon: '🌀',
+        works: [
+          { title: '部落圖騰', description: '傳統部落圖騰設計象徵力量', emoji: '🌀' },
+          { title: '民族圖騰', description: '融合民族元素的圖騰', emoji: '🎭' }
+        ]
+      }
+    ];
+
+    // Elements
+    const stylesContainer = document.getElementById('stylesContainer');
+    const stylesViewport = document.getElementById('stylesViewport');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawerTitle = document.getElementById('drawerTitle');
+    const drawerSubtitle = document.getElementById('drawerSubtitle');
+    const worksGrid = document.getElementById('worksGrid');
+
+    // State
+    let currentPosition = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startPosition = 0;
+
+    // Render style cards
+    function renderStyleCards() {
+      stylesContainer.innerHTML = stylesData.map((style, index) => `
+        <div class="style-card" data-index="${index}">
+          <div class="style-card__icon">${style.icon}</div>
+          <div class="style-card__content">
+            <h3 class="style-card__title">${style.name}</h3>
+            <p class="style-card__description">${style.description}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // Add click listeners
+      document.querySelectorAll('.style-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const index = parseInt(card.dataset.index);
+          openDrawer(stylesData[index]);
+        });
+      });
+    }
+
+    // Calculate max scroll position
+    function getMaxScroll() {
+      const containerWidth = stylesViewport.offsetWidth;
+      const contentWidth = stylesContainer.scrollWidth;
+      return Math.max(0, contentWidth - containerWidth);
+    }
+
+    // Update navigation buttons
+    function updateNavButtons() {
+      const maxScroll = getMaxScroll();
+      prevBtn.disabled = currentPosition <= 0;
+      nextBtn.disabled = currentPosition >= maxScroll;
+    }
+
+    // Scroll styles
+    function scrollStyles(direction) {
+      const scrollAmount = stylesViewport.offsetWidth * 0.8;
+      const maxScroll = getMaxScroll();
+      
+      if (direction === 'prev') {
+        currentPosition = Math.max(0, currentPosition - scrollAmount);
+      } else {
+        currentPosition = Math.min(maxScroll, currentPosition + scrollAmount);
+      }
+      
+      stylesContainer.style.transform = `translateX(-${currentPosition}px)`;
+      updateNavButtons();
+    }
+
+    // Open drawer
+    function openDrawer(style) {
+      drawerTitle.innerHTML = `<span style="font-size: 40px; margin-right: 8px;">${style.icon}</span>${style.name}`;
+      drawerSubtitle.textContent = style.description;
+      
+      worksGrid.innerHTML = style.works.map(work => `
+        <div class="work-card">
+          <div class="work-card__icon">${work.emoji}</div>
+          <div class="work-card__content">
+            <h4 class="work-card__title">${work.title}</h4>
+            <p class="work-card__description">${work.description}</p>
+          </div>
+        </div>
+      `).join('');
+      
+      drawer.classList.add('active');
+      drawerOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close drawer
+    function closeDrawer() {
+      drawer.classList.remove('active');
+      drawerOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => scrollStyles('prev'));
+    nextBtn.addEventListener('click', () => scrollStyles('next'));
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    // Touch/drag support for styles container
+    stylesViewport.addEventListener('mousedown', (e) => {
+      if (window.innerWidth > 480) {
+        isDragging = true;
+        startX = e.pageX;
+        startPosition = currentPosition;
+        stylesContainer.style.transition = 'none';
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      
+      const deltaX = startX - e.pageX;
+      const maxScroll = getMaxScroll();
+      currentPosition = Math.max(0, Math.min(maxScroll, startPosition + deltaX));
+      
+      stylesContainer.style.transform = `translateX(-${currentPosition}px)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        stylesContainer.style.transition = '';
+        updateNavButtons();
+      }
+    });
+
+    // Touch support
+    let touchStartX = 0;
+    let touchStartPosition = 0;
+
+    stylesViewport.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartPosition = currentPosition;
+    });
+
+    stylesViewport.addEventListener('touchmove', (e) => {
+      if (window.innerWidth > 480) {
+        const deltaX = touchStartX - e.touches[0].clientX;
+        const maxScroll = getMaxScroll();
+        currentPosition = Math.max(0, Math.min(maxScroll, touchStartPosition + deltaX));
+        
+        stylesContainer.style.transform = `translateX(-${currentPosition}px)`;
+      }
+    });
+
+    stylesViewport.addEventListener('touchend', () => {
+      if (window.innerWidth > 480) {
+        updateNavButtons();
+      }
+    });
+
+    // Drawer swipe down to close
+    let drawerStartY = 0;
+    let drawerCurrentY = 0;
+
+    drawer.addEventListener('touchstart', (e) => {
+      drawerStartY = e.touches[0].clientY;
+    });
+
+    drawer.addEventListener('touchmove', (e) => {
+      drawerCurrentY = e.touches[0].clientY;
+      const deltaY = drawerCurrentY - drawerStartY;
+      
+      if (deltaY > 0 && drawer.querySelector('.drawer__content').scrollTop === 0) {
+        drawer.style.transform = `translateY(${deltaY}px)`;
+      }
+    });
+
+    drawer.addEventListener('touchend', () => {
+      const deltaY = drawerCurrentY - drawerStartY;
+      
+      if (deltaY > 100) {
+        closeDrawer();
+      }
+      
+      drawer.style.transform = '';
+    });
+
+    // Window resize
+    window.addEventListener('resize', () => {
+      const maxScroll = getMaxScroll();
+      currentPosition = Math.min(currentPosition, maxScroll);
+      stylesContainer.style.transform = `translateX(-${currentPosition}px)`;
+      updateNavButtons();
+    });
+
+    // Navigation scroll effect
+    let lastScroll = 0;
+    const nav = document.querySelector('.nav');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        nav.style.boxShadow = 'var(--shadow-md)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Initialize
+    renderStyleCards();
+    updateNavButtons();
+  </script>
+</body>
+</html>
