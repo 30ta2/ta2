@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="提示詞庫">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBFf/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5YyX6KaB57+76K2m5L2c56S+Iiwic2hvcnRfbmFtZSI6IuWMl+imgiIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBTUFBQUJsQXB3MUFBQUFObEJNVkVVYUdob3pNek5tWm1iMTlmWC8vLy9Nek14MmRuWkdSa1lBQUFEbDVlVzIydHJhWm1abUlpSWhWVlZVZ0lDQ3BxYW5Dd3NDOHZMd3Z2TVczQUFBQlFVbEVRVlI0MnUzWTJ3NkNNQkNGNGFHY1JCZS8ya0Y1Q0xHR0dmWExjVC81dTIxeWtvcndkQVVBQUFCUVVsRVFWUjQydTNZMnc2Q01CQ0Y0YUdjUkJlLzJrRjVDTEdHR0dmWExjVC81dTIxeWtvcndkQVVBQUFBQUFBQUFBQUFBQUFBQUEvaTZKcnVtVXlIbSs2ZVBkMTJENmZzSnR1SllkeTkwRGI3WlkrMERkNWx6dHZ2SUhtZ2JmTEpIMmdCZjdMay9iMCsxRGI0Wkk5MTBKdjM5MERUNFpJOzFETzU4Lzc4K1Q2dlBkVTIrQ1RQZEEyK0dUUHRRMCtHVXZ0OTVFOTBEYjRaSCtlYWg0OE1wZnM5Mkc5MERiNGJKK2V2TlA5dDl0cnZWMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3VDl0THZWMm0rMjdrVDNRTnZoa3o3VU5QdGxMdHZ2SUhtZ2JmTEpuMndhZjdLWGI3eUI1b0czd3laNm8tRUQyWE41OVg5cHJHM3l5UjlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1R5Zi80ZTZ6dDhtbnl5NTlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1Q2YlBkUmRvR24rd2wxMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dWViYkJKM3ZKZGg5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3dTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaNEFBQUFBQUFBQUFBQWdUL29DR1RnSlFDT0lwU01BQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+  <title>提示詞庫 - 刺青工作室</title>
+  
+  <style>
+    :root {
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-96: 96px;
+
+      --radius-base: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-primary: var(--color-teal-300);
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-family-base); color: var(--color-text); background: var(--color-background); }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav { background: rgba(31, 33, 33, 0.95); }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .nav__back {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .section { padding: var(--space-96) var(--space-24) var(--space-64); max-width: 1200px; margin: 0 auto; }
+    .section__header { text-align: center; margin-bottom: var(--space-64); }
+    .section__title { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-16); }
+    .section__subtitle { font-size: var(--font-size-lg); color: var(--color-text-secondary); }
+
+    .tabs {
+      display: flex;
+      gap: var(--space-12);
+      margin-bottom: var(--space-48);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .tab-btn {
+      padding: var(--space-12) var(--space-24);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .form-group { margin-bottom: var(--space-24); }
+    .form-label { display: block; margin-bottom: var(--space-8); font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: var(--space-12) var(--space-16);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      font-family: var(--font-family-base);
+      background: var(--color-background);
+      color: var(--color-text);
+    }
+
+    .form-textarea { min-height: 100px; resize: vertical; }
+
+    .form-submit {
+      width: 100%;
+      padding: var(--space-16) var(--space-32);
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+    }
+
+    .form-submit:hover { background: var(--color-primary-hover); }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--space-24);
+    }
+
+    .prompt-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-24);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .prompt-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .prompt-title {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+    }
+
+    .prompt-text {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      margin-bottom: var(--space-16);
+      word-break: break-word;
+    }
+
+    .prompt-category {
+      display: inline-block;
+      padding: var(--space-4) var(--space-12);
+      background: var(--color-secondary);
+      border-radius: 20px;
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--space-12);
+    }
+
+    .prompt-actions {
+      display: flex;
+      gap: var(--space-8);
+    }
+
+    .btn {
+      flex: 1;
+      padding: var(--space-8) var(--space-12);
+      border: none;
+      border-radius: var(--radius-base);
+      font-size: var(--font-size-sm);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .btn-copy {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-copy:hover { background: var(--color-primary-hover); }
+
+    .btn-delete {
+      background: var(--color-red-500);
+      color: white;
+    }
+
+    .btn-delete:hover { opacity: 0.9; }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-64);
+      color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: var(--space-64) var(--space-16) var(--space-48); }
+      .section__title { font-size: var(--font-size-3xl); }
+      .prompt-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">刺青工作室</a>
+      <a href="index.html" class="nav__back">← 返回首頁</a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="section__header">
+      <h1 class="section__title">✨ 創作靈感提示詞庫</h1>
+      <p class="section__subtitle">管理和探索刺青設計的創作提示詞</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('browse')">瀏覽</button>
+      <button class="tab-btn" onclick="switchTab('add')">新增</button>
+    </div>
+
+    <div class="tab-content active" id="browse-tab">
+      <div class="prompt-grid" id="promptGrid"></div>
+    </div>
+
+    <div class="tab-content" id="add-tab">
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div class="form-group">
+          <label class="form-label">提示詞標題</label>
+          <input type="text" id="promptTitle" class="form-input" placeholder="例如：龍紋刺青">
+        </div>
+        <div class="form-group">
+          <label class="form-label">分類</label>
+          <select id="promptCategory" class="form-select">
+            <option value="動物">動物</option>
+            <option value="花卉">花卉</option>
+            <option value="幾何">幾何</option>
+            <option value="文字">文字</option>
+            <option value="風景">風景</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">提示詞內容</label>
+          <textarea id="promptText" class="form-textarea" placeholder="詳細描述創作靈感..."></textarea>
+        </div>
+        <button onclick="addPrompt()" class="form-submit">+ 新增提示詞</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let prompts = [
+      { id: 1, title: '傳統龍紋', category: '動物', text: '中國傳統龍紋，飽和顏色，粗黑輪廓，象徵力量與權威' },
+      { id: 2, title: '水彩花卉', category: '花卉', text: '柔和水彩風格，粉色和紫色調，自然流暢的筆觸效果' },
+      { id: 3, title: '幾何圖案', category: '幾何', text: '純粹的幾何線條，現代簡約風格，黑色線條精確對稱' },
+      { id: 4, title: '點刺曼陀羅', category: '幾何', text: '精細的點刺技法，對稱的曼陀羅圖案，深邃神秘感' }
+    ];
+
+    function renderPrompts() {
+      const grid = document.getElementById('promptGrid');
+      if (prompts.length === 0) {
+        grid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;">暫無提示詞，點擊「新增」添加</div>';
+        return;
+      }
+
+      grid.innerHTML = prompts.map(p => `
+        <div class="prompt-card">
+          <div class="prompt-category">${p.category}</div>
+          <div class="prompt-title">${p.title}</div>
+          <div class="prompt-text">${p.text}</div>
+          <div class="prompt-actions">
+            <button class="btn btn-copy" onclick="copyPrompt(${p.id})">📋 複製</button>
+            <button class="btn btn-delete" onclick="deletePrompt(${p.id})">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(`${tab}-tab`).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function addPrompt() {
+      const title = document.getElementById('promptTitle').value;
+      const category = document.getElementById('promptCategory').value;
+      const text = document.getElementById('promptText').value;
+
+      if (!title || !text) {
+        alert('請填寫標題和內容');
+        return;
+      }
+
+      prompts.push({
+        id: Date.now(),
+        title,
+        category,
+        text
+      });
+
+      document.getElementById('promptTitle').value = '';
+      document.getElementById('promptText').value = '';
+      document.querySelectorAll('.tab-btn')[0].click();
+      renderPrompts();
+    }
+
+    function copyPrompt(id) {
+      const prompt = prompts.find(p => p.id === id);
+      navigator.clipboard.writeText(prompt.text).then(() => {
+        alert('已複製到剪貼板');
+      });
+    }
+
+    function deletePrompt(id) {
+      if (confirm('確認刪除？')) {
+        prompts = prompts.filter(p => p.id !== id);
+        renderPrompts();
+      }
+    }
+
+    renderPrompts();
+  </script>
+</body>
+</html>
