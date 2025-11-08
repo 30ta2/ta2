@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="日曆預約管理">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBFf/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5pil55CG6IyD6KSH576O5L2c56S+Iiwic2hvcnRfbmFtZSI6IuaYpeeggyIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBTUFBQUJsQXB3MUFBQUFObEJNVkVVYUdob3pNek5tWm1iMTlmWC8vLy9Nek14MmRuWkdSa1lBQUFEbDVlVzIydHJhWm1abUlpSWhWVlZVZ0lDQ3BxYW5Dd3NDOHZMd3Z2TVczQUFBQlFVbEVRVlI0MnUzWTJ3NkNNQkNGNGFHY1JCZS8ya0Y1Q0xHR0dmWExjVC91MjF5a1ordndBQUFBQUFBQUFBQUFBQUFBQUFQL2k2SnJ1bVV5SG0rNmVQZDEyRDZmc0p0dTladzkwRGI3WlkrMERkNWx6dHZ2SUhtZ2JmTEpIMmdCZjdMay9iMCsxRGI0Wkk5MTBKdjM5MERUNFpJOzFETzU4Lzc4K1Q2dlBkVTIrQ1RQZEEyK0dUUHRRMCtHVXZ0OTVFOTBEYjRaSCtlYWh0OE1wZnM5Mkc5MERiNGJKK2V2TlA5dDl0cnZWMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3VDl0THZWMm0rMjdrVDNRTnZoa3o3VU5QdGxMdHZ2SUhtZ2JmTEpuMndhZjdLWGI3eUI1b0czd3laNm8tRUQyWE41OVg5cHJHM3l5UjlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1R5Zi80ZTZ6dDhtbnl5NTlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1Q2YlBkUmRvR24rd2wxMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dWViYkJKM3ZKZGg5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3dTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaNEFBQUFBQUFBQUFBQWdUL29DR1RnSlFDT0lwU01BQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+  <title>日曆預約管理 - 刺青工作室</title>
+  
+  <style>
+    /* Design System Variables - 與index.html保持一致 */
+    :root {
+      /* Primitive Color Tokens */
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+
+      /* RGB versions for opacity control */
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+
+      /* Semantic Color Tokens */
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+      /* Custom accent color */
+      --color-accent: #8b7355;
+      --color-accent-light: #a89080;
+
+      /* Typography */
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+
+      /* Spacing */
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+
+      /* Border Radius */
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+
+      /* Animation */
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --duration-slow: 350ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(167, 169, 169, 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-primary-active: var(--color-teal-800);
+        --color-secondary: rgba(119, 124, 124, 0.15);
+        --color-secondary-hover: rgba(119, 124, 124, 0.25);
+        --color-card-border: rgba(119, 124, 124, 0.2);
+        --color-border: rgba(119, 124, 124, 0.3);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text);
+      background-color: var(--color-background);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav {
+        background: rgba(31, 33, 33, 0.95);
+      }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__back {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      transition: color var(--duration-fast) var(--ease-standard);
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .nav__back:hover {
+      color: var(--color-primary-hover);
+    }
+
+    /* Main Content */
+    .section {
+      padding: var(--space-96) var(--space-24) var(--space-80);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: var(--space-64);
+    }
+
+    .section__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-16);
+      letter-spacing: -0.02em;
+    }
+
+    .section__subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Calendar Container */
+    .calendar-container {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-card-border);
+      padding: var(--space-32);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-32);
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: var(--space-12);
+    }
+
+    .calendar-btn {
+      padding: var(--space-8) var(--space-16);
+      background: var(--color-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-standard);
+      font-size: var(--font-size-base);
+      color: var(--color-text);
+      font-family: var(--font-family-base);
+    }
+
+    .calendar-btn:hover {
+      background: var(--color-secondary-hover);
+    }
+
+    .calendar-month {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      min-width: 200px;
+      text-align: center;
+    }
+
+    /* Calendar Grid */
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: var(--space-8);
+      margin-bottom: var(--space-16);
+    }
+
+    .weekday {
+      text-align: center;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-secondary);
+      padding: var(--space-12);
+      font-size: var(--font-size-sm);
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: var(--space-8);
+    }
+
+    .day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-standard);
+      background: var(--color-background);
+      font-size: var(--font-size-sm);
+    }
+
+    .day:hover {
+      border-color: var(--color-primary);
+      background: rgba(var(--color-teal-500-rgb), 0.1);
+    }
+
+    .day.selected {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .day.booked {
+      background: var(--color-red-500);
+      color: white;
+      border-color: var(--color-red-500);
+      cursor: not-allowed;
+    }
+
+    .day.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* Time Slots */
+    .time-slots {
+      margin-top: var(--space-48);
+      padding-top: var(--space-32);
+      border-top: 1px solid var(--color-card-border);
+    }
+
+    .time-slots__title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-20);
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: var(--space-12);
+    }
+
+    .time-slot {
+      padding: var(--space-12);
+      text-align: center;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-standard);
+      background: var(--color-background);
+      font-size: var(--font-size-sm);
+    }
+
+    .time-slot:hover {
+      border-color: var(--color-primary);
+      background: rgba(var(--color-teal-500-rgb), 0.1);
+    }
+
+    .time-slot.selected {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .time-slot.unavailable {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* Appointments List */
+    .appointments {
+      margin-top: var(--space-64);
+    }
+
+    .appointments__title {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-32);
+      text-align: center;
+    }
+
+    .appointment-list {
+      display: grid;
+      gap: var(--space-16);
+    }
+
+    .appointment-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .appointment-info {
+      flex: 1;
+    }
+
+    .appointment-date {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+    }
+
+    .appointment-time {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+    }
+
+    .appointment-actions {
+      display: flex;
+      gap: var(--space-12);
+    }
+
+    .btn {
+      padding: var(--space-8) var(--space-16);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-hover);
+    }
+
+    .btn-danger {
+      background: var(--color-red-500);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      opacity: 0.9;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 767px) {
+      .section {
+        padding: var(--space-64) var(--space-16) var(--space-48);
+      }
+
+      .section__title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .calendar-container {
+        padding: var(--space-24);
+      }
+
+      .appointment-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .appointment-actions {
+        width: 100%;
+        margin-top: var(--space-16);
+      }
+
+      .appointment-actions .btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">刺青工作室</a>
+      <a href="index.html" class="nav__back">← 返回首頁</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="section__header">
+      <h1 class="section__title">📅 日曆預約管理</h1>
+      <p class="section__subtitle">選擇日期與時間預約刺青服務</p>
+    </div>
+
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button class="calendar-btn" onclick="previousMonth()">←</button>
+        <div class="calendar-month" id="currentMonth">2025年11月</div>
+        <button class="calendar-btn" onclick="nextMonth()">→</button>
+      </div>
+
+      <div class="weekdays">
+        <div class="weekday">日</div>
+        <div class="weekday">一</div>
+        <div class="weekday">二</div>
+        <div class="weekday">三</div>
+        <div class="weekday">四</div>
+        <div class="weekday">五</div>
+        <div class="weekday">六</div>
+      </div>
+
+      <div class="days" id="calendarDays"></div>
+
+      <div class="time-slots">
+        <div class="time-slots__title">選擇時間</div>
+        <div class="slots-grid" id="timeSlots"></div>
+      </div>
+
+      <button class="btn btn-primary" onclick="confirmAppointment()" style="width: 100%; margin-top: var(--space-32); padding: var(--space-16);">確認預約</button>
+    </div>
+
+    <div class="appointments">
+      <h2 class="appointments__title">已預約時段</h2>
+      <div class="appointment-list" id="appointmentList"></div>
+    </div>
+  </section>
+
+  <script>
+    let currentDate = new Date(2025, 10, 8); // 11月8日
+    let selectedDate = null;
+    let selectedTime = null;
+    let appointments = [
+      { date: '2025-11-09', time: '14:00', client: '客戶A' },
+      { date: '2025-11-10', time: '10:00', client: '客戶B' }
+    ];
+
+    const timeOptions = ['09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00', '15:30', '16:00'];
+
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDayOfWeek = firstDay.getDay();
+
+      const monthNames = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+      document.getElementById('currentMonth').textContent = `${year}年${monthNames[month]}`;
+
+      let daysHTML = '';
+      
+      // 前一月的灰色日期
+      for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+        daysHTML += `<div class="day disabled"></div>`;
+      }
+
+      // 當月日期
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const isBooked = appointments.some(a => a.date === dateStr);
+        const isPast = new Date(year, month, day) < new Date() && day < new Date().getDate();
+        
+        let classNames = 'day';
+        if (isPast) classNames += ' disabled';
+        if (isBooked) classNames += ' booked';
+        if (selectedDate === dateStr) classNames += ' selected';
+
+        daysHTML += `<div class="${classNames}" onclick="selectDate('${dateStr}')">${day}</div>`;
+      }
+
+      // 下一月的灰色日期
+      const remainingDays = 42 - (startingDayOfWeek + daysInMonth);
+      for (let i = 0; i < remainingDays; i++) {
+        daysHTML += `<div class="day disabled"></div>`;
+      }
+
+      document.getElementById('calendarDays').innerHTML = daysHTML;
+      renderTimeSlots();
+    }
+
+    function renderTimeSlots() {
+      let slotsHTML = '';
+      timeOptions.forEach(time => {
+        const dateStr = selectedDate ? selectedDate.split('-').join('-') : '';
+        const isBooked = appointments.some(a => a.date === dateStr && a.time === time);
+        const isSelected = selectedTime === time;
+        
+        let classNames = 'time-slot';
+        if (isBooked) classNames += ' unavailable';
+        if (isSelected) classNames += ' selected';
+
+        slotsHTML += `<div class="${classNames}" onclick="selectTime('${time}')">${time}</div>`;
+      });
+      document.getElementById('timeSlots').innerHTML = slotsHTML;
+    }
+
+    function selectDate(dateStr) {
+      selectedDate = dateStr;
+      selectedTime = null;
+      renderCalendar();
+    }
+
+    function selectTime(time) {
+      if (selectedDate) {
+        selectedTime = time;
+        renderTimeSlots();
+      }
+    }
+
+    function confirmAppointment() {
+      if (!selectedDate || !selectedTime) {
+        alert('請選擇日期和時間');
+        return;
+      }
+
+      appointments.push({
+        date: selectedDate,
+        time: selectedTime,
+        client: '新預約'
+      });
+
+      selectedDate = null;
+      selectedTime = null;
+      renderCalendar();
+      renderAppointmentList();
+      alert('預約成功！');
+    }
+
+    function renderAppointmentList() {
+      let listHTML = '';
+      appointments.forEach((apt, index) => {
+        const date = new Date(apt.date);
+        const dateStr = `${date.getMonth() + 1}月${date.getDate()}日`;
+        
+        listHTML += `
+          <div class="appointment-card">
+            <div class="appointment-info">
+              <div class="appointment-date">${dateStr} ${apt.time}</div>
+              <div class="appointment-time">客戶：${apt.client}</div>
+            </div>
+            <div class="appointment-actions">
+              <button class="btn btn-danger" onclick="deleteAppointment(${index})">取消</button>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('appointmentList').innerHTML = listHTML || '<p style="text-align: center; color: var(--color-text-secondary);">暫無預約</p>';
+    }
+
+    function deleteAppointment(index) {
+      if (confirm('確認刪除此預約？')) {
+        appointments.splice(index, 1);
+        renderCalendar();
+        renderAppointmentList();
+      }
+    }
+
+    function previousMonth() {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    }
+
+    function nextMonth() {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    }
+
+    // 初始化
+    renderCalendar();
+    renderAppointmentList();
+  </script>
+</body>
+</html>
