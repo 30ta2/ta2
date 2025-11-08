@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="照片分類管理">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBFe/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5pil55CG5rG95L2c56S+Iiwic2hvcnRfbmFtZSI6IuaYpeeggyIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBTUFBQUJsQXB3MUFBQUFObEJNVkVVYUdob3pNek5tWm1iMTlmWC8vLy9Nek14MmRuWkdSa1lBQUFEbDVlVzIydHJhWm1abUlpSWhWVlZVZ0lDQ3BxYW5Dd3NDOHZMd3Z2TVczQUFBQlFVbEVRVlI0MnUzWTJ3NkNNQkNGNGFHY1JCZS8ya0Y1Q0xHR0dmWExjVC91MjF5a1ordndBQUFBQUFBQUFBQUFBQUFBQUFQL2k2SnJ1bVV5SG0rNmVQZDEyRDZmc0p0dTladzkwRGI3WlkrMERkNWx6dHZ2SUhtZ2JmTEpIMmdCZjdMay9iMCsxRGI0Wkk5MTBKdjM5MERUNFpJOzFETzU4Lzc4K1Q2dlBkVTIrQ1RQZEEyK0dUUHRRMCtHVXZ0OTVFOTBEYjRaSCtlYWh0OE1wZnM5Mkc5MERiNGJKK2V2TlA5dDl0cnZWMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3VDl0THZWMm0rMjdrVDNRTnZoa3o3VU5QdGxMdHZ2SUhtZ2JmTEpuMndhZjdLWGI3eUI1b0czd3laNm8tRUQyWE41OVg5cHJHM3l5UjlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1R5Zi80ZTZ6dDhtbnl5NTlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1Q2YlBkUmRvR24rd2wxMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dWViYkJKM3ZKZGg5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3dTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaNEFBQUFBQUFBQUFBQWdUL29DR1RnSlFDT0lwU01BQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+  <title>照片分類管理 - 刺青工作室</title>
+  
+  <style>
+    /* Design System Variables */
+    :root {
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-accent: #8b7355;
+      --color-accent-light: #a89080;
+
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(167, 169, 169, 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text);
+      background-color: var(--color-background);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav {
+        background: rgba(31, 33, 33, 0.95);
+      }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px var(--space-24) var(--space-64);
+    }
+
+    .page-title {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-32);
+      text-align: center;
+    }
+
+    /* Tab Navigation */
+    .tabs {
+      display: flex;
+      gap: var(--space-12);
+      margin-bottom: var(--space-48);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .tab-btn {
+      padding: var(--space-12) var(--space-24);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      transition: all var(--duration-normal) var(--ease-standard);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .tab-btn:hover {
+      color: var(--color-text);
+    }
+
+    .tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    /* Upload Section */
+    .upload-area {
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-48);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+      background: var(--color-surface);
+    }
+
+    .upload-area:hover {
+      border-color: var(--color-primary);
+      background: rgba(var(--color-teal-500-rgb), 0.05);
+    }
+
+    .upload-area.drag-over {
+      border-color: var(--color-primary);
+      background: rgba(var(--color-teal-500-rgb), 0.1);
+    }
+
+    .upload-icon {
+      font-size: 48px;
+      margin-bottom: var(--space-16);
+    }
+
+    .upload-text {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-8);
+      color: var(--color-text);
+    }
+
+    .upload-subtext {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    /* Photo Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-24);
+      margin-top: var(--space-32);
+    }
+
+    .photo-item {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .photo-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .photo-preview {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-info {
+      padding: var(--space-16);
+    }
+
+    .photo-filename {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+      color: var(--color-text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .style-selector {
+      display: flex;
+      gap: var(--space-8);
+      align-items: center;
+      margin-bottom: var(--space-12);
+    }
+
+    .style-select {
+      flex: 1;
+      padding: var(--space-8) var(--space-12);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-sm);
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      padding: var(--space-8) var(--space-12);
+      background: var(--color-red-500);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: var(--font-size-xs);
+      transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .delete-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Style Cards Grid */
+    .style-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--space-24);
+    }
+
+    .style-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-24);
+      text-align: center;
+      transition: all var(--duration-normal) var(--ease-standard);
+      cursor: pointer;
+    }
+
+    .style-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-primary);
+    }
+
+    .style-icon {
+      font-size: 48px;
+      margin-bottom: var(--space-12);
+    }
+
+    .style-name {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+      color: var(--color-text);
+    }
+
+    .style-count {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: var(--space-64);
+      color: var(--color-text-secondary);
+    }
+
+    .empty-state-icon {
+      font-size: 64px;
+      margin-bottom: var(--space-24);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 80px var(--space-16) var(--space-48);
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--space-16);
+      }
+
+      .style-cards {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: var(--space-16);
+      }
+
+      .upload-area {
+        padding: var(--space-32);
+      }
+
+      .upload-icon {
+        font-size: 32px;
+      }
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn var(--duration-normal) var(--ease-standard);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">刺青工作室</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h1 class="page-title">📁 照片分類管理</h1>
+
+    <!-- Tab Navigation -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="upload">上傳照片</button>
+      <button class="tab-btn" data-tab="organize">組織分類</button>
+      <button class="tab-btn" data-tab="styles">風格統計</button>
+    </div>
+
+    <!-- Upload Tab -->
+    <div class="tab-content active" id="upload-tab">
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📸</div>
+        <p class="upload-text">點擊或拖放上傳照片</p>
+        <p class="upload-subtext">支援 JPG, PNG, GIF 格式</p>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+      <div class="photo-grid" id="photoGrid"></div>
+    </div>
+
+    <!-- Organize Tab -->
+    <div class="tab-content" id="organize-tab">
+      <div id="organizeContent"></div>
+    </div>
+
+    <!-- Styles Tab -->
+    <div class="tab-content" id="styles-tab">
+      <div class="style-cards" id="styleCards"></div>
+    </div>
+  </div>
+
+  <script>
+    // 刺青風格列表
+    const styles = [
+      { id: 'drawing', name: '繪畫作品', icon: '🎨' },
+      { id: 'tattoo', name: '刺青作品', icon: '🔥' },
+      { id: 'realism', name: '寫實', icon: '👁️' },
+      { id: 'dark', name: '暗黑', icon: '⚫' },
+      { id: 'new-traditional', name: '新傳統', icon: '🔥' },
+      { id: 'old-traditional', name: '老傳統', icon: '🐅' },
+      { id: 'new-school', name: 'New School', icon: '🤡' },
+      { id: 'old-school', name: 'Old School', icon: '⚓' },
+      { id: 'watercolor', name: '水彩', icon: '🎨' },
+      { id: 'ink-wash', name: '水墨', icon: '🖌️' },
+      { id: 'geometric', name: '幾何', icon: '🔷' },
+      { id: 'dotwork', name: '點刺', icon: '🔴' },
+      { id: 'script', name: '花體字', icon: '✒️' },
+      { id: 'tribal', name: '圖騰', icon: '🌀' }
+    ];
+
+    // 相簿存儲 (使用記憶體，不持久化)
+    let albums = {};
+    styles.forEach(style => {
+      albums[style.id] = [];
+    });
+
+    let uploadedPhotos = [];
+
+    // DOM Elements
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const photoGrid = document.getElementById('photoGrid');
+    const organizeContent = document.getElementById('organizeContent');
+    const styleCards = document.getElementById('styleCards');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // 上傳區域事件
+    uploadArea.addEventListener('click', () => fileInput.click());
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('drag-over');
+    });
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('drag-over');
+    });
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      handleFiles(e.target.files);
+    });
+
+    // 處理文件上傳
+    function handleFiles(files) {
+      Array.from(files).forEach(file => {
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const photo = {
+              id: Date.now() + Math.random(),
+              name: file.name,
+              data: e.target.result,
+              style: 'tattoo' // 預設分類
+            };
+            uploadedPhotos.push(photo);
+            renderPhotos();
+            updateStyleCounts();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // 渲染上傳的照片
+    function renderPhotos() {
+      if (uploadedPhotos.length === 0) {
+        photoGrid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>還沒上傳照片</p></div>';
+        return;
+      }
+
+      photoGrid.innerHTML = uploadedPhotos.map(photo => `
+        <div class="photo-item">
+          <div class="photo-preview">
+            <img src="${photo.data}" alt="${photo.name}">
+          </div>
+          <div class="photo-info">
+            <div class="photo-filename" title="${photo.name}">${photo.name}</div>
+            <div class="style-selector">
+              <select class="style-select" onchange="updatePhotoStyle(${photo.id}, this.value)">
+                ${styles.map(style => `
+                  <option value="${style.id}" ${photo.style === style.id ? 'selected' : ''}>
+                    ${style.name}
+                  </option>
+                `).join('')}
+              </select>
+              <button class="delete-btn" onclick="deletePhoto(${photo.id})">刪除</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 更新照片風格
+    function updatePhotoStyle(photoId, styleId) {
+      const photo = uploadedPhotos.find(p => p.id === photoId);
+      if (photo) {
+        photo.style = styleId;
+        updateStyleCounts();
+      }
+    }
+
+    // 刪除照片
+    function deletePhoto(photoId) {
+      uploadedPhotos = uploadedPhotos.filter(p => p.id !== photoId);
+      renderPhotos();
+      updateStyleCounts();
+    }
+
+    // 更新風格計數並渲染組織頁面
+    function updateStyleCounts() {
+      // 清空所有相簿
+      styles.forEach(style => {
+        albums[style.id] = [];
+      });
+
+      // 重新分類
+      uploadedPhotos.forEach(photo => {
+        albums[photo.style].push(photo);
+      });
+
+      // 更新組織頁面
+      renderOrganize();
+      // 更新統計頁面
+      renderStyles();
+    }
+
+    // 渲染組織頁面
+    function renderOrganize() {
+      let html = '';
+      
+      styles.forEach(style => {
+        const photos = albums[style.id];
+        html += `
+          <div style="margin-bottom: 48px;">
+            <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px;">
+              ${style.icon} ${style.name}
+            </h3>
+            ${photos.length === 0 
+              ? '<p style="color: var(--color-text-secondary);">還沒有此風格的照片</p>'
+              : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px;">
+                  ${photos.map(photo => `
+                    <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-card-border);">
+                      <img src="${photo.data}" alt="${photo.name}" style="width: 100%; height: 150px; object-fit: cover;">
+                      <div style="padding: 8px; background: var(--color-surface); font-size: var(--font-size-xs); color: var(--color-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${photo.name}">
+                        ${photo.name}
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>`
+            }
+          </div>
+        `;
+      });
+
+      organizeContent.innerHTML = html;
+    }
+
+    // 渲染風格統計
+    function renderStyles() {
+      styleCards.innerHTML = styles.map(style => `
+        <div class="style-card">
+          <div class="style-icon">${style.icon}</div>
+          <div class="style-name">${style.name}</div>
+          <div class="style-count">${albums[style.id].length} 張照片</div>
+        </div>
+      `).join('');
+    }
+
+    // Tab 切換
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.dataset.tab;
+        
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById(`${tabName}-tab`).classList.add('active');
+      });
+    });
+
+    // 初始化
+    renderPhotos();
+    renderStyles();
+  </script>
+</body>
+</html>
