@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="客戶管理">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBFf/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5bGL5YyW576O5L2c56S+Iiwic2hvcnRfbmFtZSI6IuW5i+WMliIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIn0=">
+  <title>客戶管理 - 刺青工作室</title>
+  
+  <style>
+    :root {
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-96: 96px;
+
+      --radius-base: 8px;
+      --radius-lg: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: #e5e5e5;
+        --color-primary: var(--color-teal-300);
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-family-base); color: var(--color-text); background: var(--color-background); }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav { background: rgba(31, 33, 33, 0.95); }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      text-decoration: none;
+      color: var(--color-text);
+    }
+
+    .nav__back {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .section { padding: var(--space-96) var(--space-24) var(--space-64); max-width: 1200px; margin: 0 auto; }
+    .section__header { text-align: center; margin-bottom: var(--space-64); }
+    .section__title { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-16); }
+
+    .tabs {
+      display: flex;
+      gap: var(--space-12);
+      margin-bottom: var(--space-48);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .tab-btn {
+      padding: var(--space-12) var(--space-24);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .form-group { margin-bottom: var(--space-24); }
+    .form-label { display: block; margin-bottom: var(--space-8); font-weight: var(--font-weight-semibold); }
+    .form-input { width: 100%; padding: var(--space-12); border: 1px solid var(--color-border); border-radius: var(--radius-base); background: var(--color-background); color: var(--color-text); }
+
+    .btn {
+      padding: var(--space-12) var(--space-24);
+      border: none;
+      border-radius: var(--radius-base);
+      cursor: pointer;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .btn-primary { background: var(--color-primary); color: white; }
+    .btn-danger { background: var(--color-red-500); color: white; }
+
+    .customer-list {
+      display: grid;
+      gap: var(--space-16);
+    }
+
+    .customer-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: var(--space-64) var(--space-16) var(--space-48); }
+      .section__title { font-size: var(--font-size-3xl); }
+      .customer-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">刺青工作室</a>
+      <a href="index.html" class="nav__back">← 返回首頁</a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="section__header">
+      <h1 class="section__title">👥 客戶資料與預約紀錄</h1>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('list')">客戶列表</button>
+      <button class="tab-btn" onclick="switchTab('add')">新增客戶</button>
+    </div>
+
+    <div class="tab-content active" id="list-tab">
+      <div class="customer-list" id="customerList"></div>
+    </div>
+
+    <div class="tab-content" id="add-tab">
+      <div style="max-width: 600px;">
+        <div class="form-group">
+          <label class="form-label">姓名</label>
+          <input type="text" id="customerName" class="form-input" placeholder="客戶姓名">
+        </div>
+        <div class="form-group">
+          <label class="form-label">聯絡電話</label>
+          <input type="tel" id="customerPhone" class="form-input" placeholder="09xx-xxx-xxx">
+        </div>
+        <div class="form-group">
+          <label class="form-label">預約日期</label>
+          <input type="date" id="appointmentDate" class="form-input">
+        </div>
+        <button onclick="addCustomer()" class="btn btn-primary" style="width: 100%;">新增</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let customers = [
+      { id: 1, name: '王小明', phone: '0912-345-678', date: '2025-11-10', status: '已預約' },
+      { id: 2, name: '李美麗', phone: '0913-456-789', date: '2025-11-12', status: '已完成' }
+    ];
+
+    function renderCustomers() {
+      const list = document.getElementById('customerList');
+      list.innerHTML = customers.map(c => `
+        <div class="customer-card">
+          <div>
+            <div style="font-weight: bold;">${c.name}</div>
+            <div style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">${c.phone}</div>
+            <div style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">${c.date} - ${c.status}</div>
+          </div>
+          <button onclick="deleteCustomer(${c.id})" class="btn btn-danger">刪除</button>
+        </div>
+      `).join('');
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(`${tab}-tab`).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function addCustomer() {
+      const name = document.getElementById('customerName').value;
+      const phone = document.getElementById('customerPhone').value;
+      const date = document.getElementById('appointmentDate').value;
+
+      if (!name || !phone || !date) {
+        alert('請填寫所有欄位');
+        return;
+      }
+
+      customers.push({
+        id: Date.now(),
+        name,
+        phone,
+        date,
+        status: '已預約'
+      });
+
+      document.getElementById('customerName').value = '';
+      document.getElementById('customerPhone').value = '';
+      document.getElementById('appointmentDate').value = '';
+      document.querySelectorAll('.tab-btn')[0].click();
+      renderCustomers();
+    }
+
+    function deleteCustomer(id) {
+      if (confirm('確認刪除？')) {
+        customers = customers.filter(c => c.id !== id);
+        renderCustomers();
+      }
+    }
+
+    renderCustomers();
+  </script>
+</body>
+</html>
