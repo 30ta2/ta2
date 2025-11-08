@@ -832,6 +832,7 @@
   <!-- Password Modal for Hidden Space -->
   <div class="modal" id="passwordModal">
     <div class="modal__content">
+      <button type="button" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:24px;color:inherit;cursor:pointer;" onclick="closePasswordModal()">✕</button>
       <h2 class="modal__title">🔐 管理系統</h2>
       <input type="password" class="modal__input" id="passwordInput" placeholder="輸入密碼" />
       <button class="modal__button" onclick="verifyPassword()">進入</button>
@@ -1133,6 +1134,11 @@
       
       lastScroll = currentScroll;
     });
+    function closePasswordModal() {
+  document.getElementById('passwordModal').classList.remove('active');
+  document.getElementById('passwordInput').value = '';
+}
+
   </script>
 </body>
 </html>
