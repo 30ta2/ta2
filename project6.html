@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="價格計算">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBFf/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5Li76K2m6IyD57+76K2m5L2c56S+Iiwic2hvcnRfbmFtZSI6IuS4u+imgiIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIn0=">
+  <title>價格計算機 - 刺青工作室</title>
+  
+  <style>
+    :root {
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-96: 96px;
+
+      --radius-base: 8px;
+      --radius-lg: 16px;
+
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: #e5e5e5;
+        --color-primary: var(--color-teal-300);
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-family-base); color: var(--color-text); background: var(--color-background); }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav { background: rgba(31, 33, 33, 0.95); }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      text-decoration: none;
+      color: var(--color-text);
+    }
+
+    .nav__back {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .section { padding: var(--space-96) var(--space-24) var(--space-64); max-width: 1200px; margin: 0 auto; }
+    .section__header { text-align: center; margin-bottom: var(--space-64); }
+    .section__title { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-16); }
+
+    .calculator-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--color-surface);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-48);
+    }
+
+    .form-group { margin-bottom: var(--space-32); }
+    .form-label { display: block; margin-bottom: var(--space-8); font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); }
+    .form-input, .form-select { 
+      width: 100%; 
+      padding: var(--space-12) var(--space-16); 
+      border: 1px solid var(--color-border); 
+      border-radius: var(--radius-base); 
+      background: var(--color-background); 
+      color: var(--color-text);
+      font-family: var(--font-family-base);
+    }
+
+    .range-input {
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: var(--color-border);
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .range-input::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      cursor: pointer;
+      border: none;
+    }
+
+    .result-box {
+      background: var(--color-primary);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-32);
+      text-align: center;
+      margin-top: var(--space-32);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .result-label { font-size: var(--font-size-md); opacity: 0.9; margin-bottom: var(--space-8); }
+    .result-price { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); }
+
+    .info-box {
+      background: rgba(var(--color-teal-500-rgb), 0.1);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-base);
+      padding: var(--space-16);
+      margin-top: var(--space-32);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .range-value {
+      display: inline-block;
+      background: var(--color-secondary);
+      padding: var(--space-4) var(--space-12);
+      border-radius: 20px;
+      font-weight: var(--font-weight-bold);
+      margin-left: var(--space-8);
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: var(--space-64) var(--space-16) var(--space-48); }
+      .section__title { font-size: var(--font-size-3xl); }
+      .calculator-container { padding: var(--space-24); }
+      .result-price { font-size: var(--font-size-2xl); }
+    }
+
+    --color-teal-500-rgb: 33, 128, 141;
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">刺青工作室</a>
+      <a href="index.html" class="nav__back">← 返回首頁</a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="section__header">
+      <h1 class="section__title">💰 刺青價格估算工具</h1>
+      <p style="color: var(--color-text-secondary);">快速估算刺青服務費用</p>
+    </div>
+
+    <div class="calculator-container">
+      <div class="form-group">
+        <label class="form-label">刺青風格</label>
+        <select id="style" class="form-select" onchange="calculatePrice()">
+          <option value="basic">基礎風格 (基本價 $2000)</option>
+          <option value="medium">中等風格 (基本價 $3500)</option>
+          <option value="complex">複雜風格 (基本價 $5000)</option>
+          <option value="premium">高端設計 (基本價 $8000)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">尺寸大小 <span class="range-value" id="sizeLabel">5cm</span></label>
+        <input type="range" id="size" class="range-input" min="1" max="50" value="5" onchange="calculatePrice(); updateSizeLabel()">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">顏色數量 <span class="range-value" id="colorLabel">1色</span></label>
+        <input type="range" id="colors" class="range-input" min="1" max="10" value="1" onchange="calculatePrice(); updateColorLabel()">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">難度係數</label>
+        <select id="difficulty" class="form-select" onchange="calculatePrice()">
+          <option value="1">簡單 (1x)</option>
+          <option value="1.5">中等 (1.5x)</option>
+          <option value="2">困難 (2x)</option>
+          <option value="2.5">極難 (2.5x)</option>
+        </select>
+      </div>
+
+      <div class="result-box">
+        <div class="result-label">預估價格</div>
+        <div class="result-price" id="totalPrice">$0</div>
+      </div>
+
+      <div class="info-box">
+        <strong>💡 說明：</strong><br>
+        • 基礎風格：簡單線條、標誌性設計<br>
+        • 中等風格：混合色彩、中等複雜度<br>
+        • 複雜風格：細節豐富、多層次設計<br>
+        • 高端設計：超寫實、藝術級別<br><br>
+        此為參考價格，實際費用將根據設計複雜度調整。
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const priceMap = {
+      basic: 2000,
+      medium: 3500,
+      complex: 5000,
+      premium: 8000
+    };
+
+    function calculatePrice() {
+      const style = document.getElementById('style').value;
+      const size = parseInt(document.getElementById('size').value);
+      const colors = parseInt(document.getElementById('colors').value);
+      const difficulty = parseFloat(document.getElementById('difficulty').value);
+
+      const basePrice = priceMap[style];
+      const sizeMultiplier = 1 + (size - 1) * 0.05;
+      const colorMultiplier = 1 + (colors - 1) * 0.1;
+      
+      const totalPrice = Math.round(basePrice * sizeMultiplier * colorMultiplier * difficulty);
+      document.getElementById('totalPrice').textContent = `$${totalPrice.toLocaleString()}`;
+    }
+
+    function updateSizeLabel() {
+      const size = document.getElementById('size').value;
+      document.getElementById('sizeLabel').textContent = `${size}cm`;
+    }
+
+    function updateColorLabel() {
+      const colors = document.getElementById('colors').value;
+      document.getElementById('colorLabel').textContent = `${colors}色`;
+    }
+
+    calculatePrice();
+  </script>
+</body>
+</html>
