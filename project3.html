@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AI圖像生成">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBFf/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQUkg5qiv5r+x6KaB5r+z6KaB5L2c56S+Iiwic2hvcnRfbmFtZSI6IkFJ5qiv5r+xIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJ0aGVtZV9jb2xvciI6IiMxYTFhMWEiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNQUFBQURBQ0FNQUFBQmxBcHcxQUFBQU5sQk1WRVVhR2hvek16Tm1abWIxOWZYLy8vL016TXgyZG5aR1JrWUFBQURsNWVXMjJ0cmFabVptSWlJaFZWVlVnSUNDcHFhbkN3c0M4dkx3dnZNVzNBQUFCUVVsRVFWUjQydTNZMnc2Q01CQ0Y0YUdjUkJlLzJrRjVDTEdHR0dmWExjVC81dTIxeWtvcndkQVVBQUFCUVVsRVFWUjQydTNZMnc2Q01CQ0Y0YUdjUkJlLzJrRjVDTEdHR0dmWExjVC81dTIxeWtvcndkQVVBQUFBQUFBQUFBQUFBQUFBQUEvaTZKcnVtVXlIbSs2ZVBkMTJENmZzSnR1SllkeTkwRGI3WlkrMERkNWx6dHZ2SUhtZ2JmTEpIMmdCZjdMay9iMCsxRGI0Wkk5MTBKdjM5MERUNFpJOzFETzU4Lzc4K1Q2dlBkVTIrQ1RQZEEyK0dUUHRRMCtHVXZ0OTVFOTBEYjRaSCtlYWg0OE1wZnM5Mkc5MERiNGJKK2V2TlA5dDl0cnZWMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3VDl0THZWMm0rMjdrVDNRTnZoa3o3VU5QdGxMdHZ2SUhtZ2JmTEpuMndhZjdLWGI3eUI1b0czd3laNm8tRUQyWE41OVg5cHJHM3l5UjlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1R5Zi80ZTZ6dDhtbnl5NTlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1Q2YlBkUmRvR24rd2wxMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dWViYkJKM3ZKZGg5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3dTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaNEFBQUFBQUFBQUFBQWdUL29DR1RnSlFDT0lwU01BQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+  <title>AI圖像生成 - 刺青工作室</title>
+  
+  <style>
+    :root {
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-accent: #8b7355;
+      --color-accent-light: #a89080;
+
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --duration-slow: 350ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(167, 169, 169, 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      color: var(--color-text);
+      background-color: var(--color-background);
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav {
+        background: rgba(31, 33, 33, 0.95);
+      }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .nav__back {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      transition: color var(--duration-fast) var(--ease-standard);
+    }
+
+    .nav__back:hover {
+      color: var(--color-primary-hover);
+    }
+
+    .section {
+      padding: var(--space-96) var(--space-24) var(--space-80);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: var(--space-64);
+    }
+
+    .section__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-16);
+    }
+
+    .section__subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-48);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: var(--space-24);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: var(--space-8);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-sm);
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: var(--space-12) var(--space-16);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      background: var(--color-background);
+      color: var(--color-text);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: var(--space-16) var(--space-32);
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .form-submit:hover {
+      background: var(--color-primary-hover);
+    }
+
+    .preview-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-32);
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .preview-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: var(--radius-lg);
+    }
+
+    .preview-placeholder {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-lg);
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto var(--space-16);
+      border: 3px solid var(--color-secondary);
+      border-top: 3px solid var(--color-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: var(--space-64) var(--space-16) var(--space-48);
+      }
+
+      .section__title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        gap: var(--space-32);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__brand">刺青工作室</a>
+      <a href="index.html" class="nav__back">← 返回首頁</a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="section__header">
+      <h1 class="section__title">🤖 AI輔助設計圖像生成</h1>
+      <p class="section__subtitle">使用AI輔助生成刺青設計圖案</p>
+    </div>
+
+    <div class="container">
+      <div>
+        <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-32);">生成設定</h2>
+        
+        <div class="form-group">
+          <label class="form-label">刺青風格</label>
+          <select id="style" class="form-select">
+            <option value="">選擇風格</option>
+            <option value="traditional">傳統</option>
+            <option value="watercolor">水彩</option>
+            <option value="realism">寫實</option>
+            <option value="geometric">幾何</option>
+            <option value="dotwork">點刺</option>
+            <option value="tribal">圖騰</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">主題/主題</label>
+          <input type="text" id="subject" class="form-input" placeholder="例如：龍、花卉、動物..." required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">風格描述</label>
+          <textarea id="description" class="form-textarea" placeholder="詳細描述您想要的設計..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">色彩方案</label>
+          <select id="color" class="form-select">
+            <option value="">選擇色彩</option>
+            <option value="black">黑色/灰色</option>
+            <option value="color">彩色</option>
+            <option value="mixed">混合</option>
+          </select>
+        </div>
+
+        <button onclick="generateImage()" class="form-submit">🎨 生成圖像</button>
+      </div>
+
+      <div class="preview-box" id="previewBox">
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p>生成中...</p>
+        </div>
+        <div id="previewContent" class="preview-placeholder">生成的圖像將顯示在此</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function generateImage() {
+      const style = document.getElementById('style').value;
+      const subject = document.getElementById('subject').value;
+      const description = document.getElementById('description').value;
+      const color = document.getElementById('color').value;
+
+      if (!style || !subject || !color) {
+        alert('請填寫所有必填欄位');
+        return;
+      }
+
+      const loading = document.getElementById('loading');
+      const previewContent = document.getElementById('previewContent');
+
+      loading.classList.add('active');
+      previewContent.innerHTML = '';
+
+      // 模擬API調用 - 實際使用時可連接真實API
+      setTimeout(() => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 400;
+        canvas.height = 400;
+        const ctx = canvas.getContext('2d');
+
+        // 繪製漸層背景
+        const gradient = ctx.createLinearGradient(0, 0, 400, 400);
+        gradient.addColorStop(0, '#8b7355');
+        gradient.addColorStop(1, '#a89080');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 400, 400);
+
+        // 繪製簡單的設計示意
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('設計預覽', 200, 100);
+        ctx.font = '14px Arial';
+        ctx.fillText(`風格: ${style}`, 200, 150);
+        ctx.fillText(`主題: ${subject}`, 200, 180);
+        ctx.fillText(`色彩: ${color}`, 200, 210);
+
+        // 繪製示意圓形
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(200, 280, 80, 0, Math.PI * 2);
+        ctx.stroke();
+
+        const imageData = canvas.toDataURL();
+        const img = document.createElement('img');
+        img.src = imageData;
+        img.class = 'preview-image';
+        
+        loading.classList.remove('active');
+        previewContent.innerHTML = '';
+        previewContent.appendChild(img);
+
+        // 添加下載按鈕
+        const downloadBtn = document.createElement('button');
+        downloadBtn.textContent = '📥 下載圖像';
+        downloadBtn.style.marginTop = 'var(--space-24)';
+        downloadBtn.style.width = '100%';
+        downloadBtn.style.padding = 'var(--space-12)';
+        downloadBtn.style.background = 'var(--color-primary)';
+        downloadBtn.style.color = 'white';
+        downloadBtn.style.border = 'none';
+        downloadBtn.style.borderRadius = 'var(--radius-lg)';
+        downloadBtn.style.cursor = 'pointer';
+        downloadBtn.onclick = () => {
+          const link = document.createElement('a');
+          link.href = imageData;
+          link.download = `tattoo-design-${Date.now()}.png`;
+          link.click();
+        };
+        previewContent.parentElement.appendChild(downloadBtn);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
