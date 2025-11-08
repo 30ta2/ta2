@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="刺青工作室">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAANlBMVEUaGhozMzNmZmb19fX////MzMx2dnZGRkYAAADl5eW2traZmZmIiIhVVVUgICCpqanCwsK8vLwvvMW8AAABQUlEQVR42u3Y2w6CMBCF4aGcRBHf/2kF5CLGGGfXLcT/u21ykZ+wbTIAAAAAAAAAAAAAAAAAAAAAAPi/6JrumUyHm+6ePd12D6fsJtu9Zw+0Db7ZY22DN9lLtvvIHmgbfLJH2gaf7Lk+b0+1DT7ZY22Db7KXbPeRPdA2+GTPtQ0+2Utt95490Db4ZI+1DT7ZS7b7yB5oG3yyZ/o8vMse6PP2VNvgkz3WNvhkL9nuI3ugbfDJnmsb/NP2Wm+32e4je6Bt8Mmeaxt8spdstw2+yR5rG3yyl2z3kT3QNvhkz7UNPtlLtvvIHmgbfLLn2gaf7CXbbYNP9ljb4JO9ZLuP7IG2wSd7rm3wyV6y3Uf2QNvgkz3XNvhkL9luG3yyR9oGn+wl231kD7QNPtlzbYNP9pLtPrIH2gaf7Lm2wSd7yXYf2QMAAAAAAAAAAADgT/oCGTgJQCOIpSMAAAAASUVORK5CYII=">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5Yia6Z2S5bel5L2c5a6kIiwic2hvcnRfbmFtZSI6IuWIuumdkiIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBTUFBQUJsQXB3MUFBQUFObEJNVkVVYUdob3pNek5tWm1iMTlmWC8vLy9Nek14MmRuWkdSa1lBQUFEbDVlVzIydHJhWm1abUlpSWhWVlZVZ0lDQ3BxYW5Dd3NDOHZMd3Z2TVczQUFBQlFVbEVRVlI0MnUzWTJ3NkNNQkNGNGFHY1JCZS8ya0Y1Q0xHR0dmWExjVC91MjF5a1ordndBQUFBQUFBQUFBQUFBQUFBQUFQL2k2SnJ1bVV5SG0rNmVQZDEyRDZmc0p0dTladzkwRGI3WlkrMERkNWx6dHZ2SUhtZ2JmTEpIMmdCZjdMay9iMCsxRGI0Wkk5MTBKdjM5MERUNFpJOzFETzU4Lzc4K1Q2dlBkVTIrQ1RQZEEyK0dUUHRRMCtHVXZ0OTVFOTBEYjRaSCtlYWh0OE1wZnM5Mkc5MERiNGJKK2V2TlA5dDl0cnZWMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3VDl0THZWMm0rMjdrVDNRTnZoa3o3VU5QdGxMdHZ2SUhtZ2JmTEpuMndhZjdLWGI3eUI1b0czd3laNm8tRUQyWE41OVg5cHJHM3l5UjlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1R5Zi80ZTZ6dDhtbnl5NTlvR253U2Q3cm0zd1Q5dEx0dnZJSG1nYmZESm4yZ2JmQkozK3UrM1Q2YlBkUmRvR24rd2wxMm0rN2plNkJ0OE1rZWF4dDhtbnl5M2JhNEpQdGxqYjRKTzlaN3VQN0lHMndTZDdybTN3U2Q3eVhZZjJRTnRnay8yV052Z2s3MWt1NC9zZ2JiQko7dWViYkJKM3ZKZGg5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3dTZDdybTN3U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko7dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko3dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaN2lON29HM3d5UjlvR253U2Q3eVhZZjJRTnRnazMyV052Z2s3MWt1NC9zZ2JiQko3dW1iZkJKM3ZKZGQ5WkErMERUNFpJKzFEVDdaUzdaNEFBQUFBQUFBQUFBQWdUL29DR1RnSlFDT0lwU01BQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+  <title>刺青工作室 - 專業刺青設計服務</title>
+  
+  <style>
+    /* Design System Variables */
+    :root {
+      /* Primitive Color Tokens */
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+
+      /* RGB versions for opacity control */
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+
+      /* Semantic Color Tokens */
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+      /* Custom accent color - muted tone */
+      --color-accent: #8b7355;
+      --color-accent-light: #a89080;
+
+      /* Typography */
+      --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 16px;
+      --font-size-lg: 18px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 32px;
+      --font-size-4xl: 40px;
+      --font-size-5xl: 48px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+
+      /* Spacing */
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+
+      /* Border Radius */
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+
+      /* Animation */
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --duration-slow: 350ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(167, 169, 169, 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-primary-active: var(--color-teal-800);
+        --color-secondary: rgba(119, 124, 124, 0.15);
+        --color-secondary-hover: rgba(119, 124, 124, 0.25);
+        --color-card-border: rgba(119, 124, 124, 0.2);
+        --color-border: rgba(119, 124, 124, 0.3);
+      }
+    }
+
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      touch-action: manipulation;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text);
+      background-color: var(--color-background);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .nav {
+        background: rgba(31, 33, 33, 0.95);
+      }
+    }
+
+    .nav__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__brand {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-8);
+      z-index: 1001;
+    }
+
+    .nav__hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--color-text);
+      border-radius: 2px;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .nav__hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .nav__hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav__hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .nav__menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-xl);
+      transition: right var(--duration-slow) var(--ease-standard);
+      padding: var(--space-80) var(--space-32) var(--space-32);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-24);
+    }
+
+    .nav__menu.active {
+      right: 0;
+    }
+
+    .nav__link {
+      color: var(--color-text);
+      text-decoration: none;
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-medium);
+      padding: var(--space-12) 0;
+      border-bottom: 1px solid var(--color-card-border);
+      transition: color var(--duration-fast) var(--ease-standard);
+    }
+
+    .nav__link:hover {
+      color: var(--color-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(51, 51, 51, 0.5) 100%);
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-32);
+      max-width: 800px;
+      color: white;
+    }
+
+    .hero__title {
+      font-size: var(--font-size-5xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-24);
+      line-height: var(--line-height-tight);
+      letter-spacing: -0.03em;
+    }
+
+    .hero__subtitle {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-normal);
+      margin-bottom: var(--space-40);
+      color: rgba(255, 255, 255, 0.9);
+      line-height: var(--line-height-relaxed);
+    }
+
+    .hero__cta {
+      display: inline-block;
+      padding: var(--space-16) var(--space-48);
+      background: var(--color-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius-lg);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      transition: all var(--duration-normal) var(--ease-standard);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero__cta:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    /* Section Styles */
+    .section {
+      padding: var(--space-80) var(--space-24);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: var(--space-64);
+    }
+
+    .section__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-16);
+      letter-spacing: -0.02em;
+    }
+
+    .section__subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* Services Section */
+    .services__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+
+    @media (min-width: 768px) {
+      .services__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .service-card {
+      background: var(--color-surface);
+      padding: var(--space-40);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-card-border);
+      text-align: center;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card__icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-24);
+      background: var(--color-secondary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-3xl);
+    }
+
+    .service-card__title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+    }
+
+    .service-card__description {
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* Projects Section */
+    .projects__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+
+    @media (min-width: 768px) {
+      .projects__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .projects__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .project-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+      text-decoration: none;
+      display: block;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .project-card__image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-4xl);
+      color: white;
+    }
+
+    .project-card__content {
+      padding: var(--space-24);
+    }
+
+    .project-card__title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+      color: var(--color-text);
+    }
+
+    .project-card__description {
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      margin-bottom: var(--space-16);
+    }
+
+    .project-card__link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--color-primary);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-card__link::after {
+      content: '→';
+      margin-left: var(--space-8);
+      transition: transform var(--duration-fast) var(--ease-standard);
+    }
+
+    .project-card:hover .project-card__link::after {
+      transform: translateX(4px);
+    }
+
+    /* Appointment Section */
+    .appointment {
+      background: var(--color-surface);
+      padding: var(--space-80) var(--space-24);
+      text-align: center;
+    }
+
+    .appointment__container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .appointment__form {
+      margin-top: var(--space-48);
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: var(--space-24);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: var(--space-8);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: var(--space-12) var(--space-16);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-base);
+      background: var(--color-background);
+      color: var(--color-text);
+      transition: border-color var(--duration-fast) var(--ease-standard);
+      min-height: 44px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: var(--space-16) var(--space-32);
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+      min-height: 44px;
+    }
+
+    .form-submit:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+    }
+
+    /* Articles Section */
+    .articles__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+
+    @media (min-width: 768px) {
+      .articles__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .articles__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .article-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .article-card__image {
+      width: 100%;
+      height: 180px;
+      background: var(--color-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-3xl);
+    }
+
+    .article-card__content {
+      padding: var(--space-24);
+    }
+
+    .article-card__title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+    }
+
+    .article-card__excerpt {
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      margin-bottom: var(--space-16);
+      font-size: var(--font-size-sm);
+    }
+
+    .article-card__link {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-sm);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .article-card__link::after {
+      content: '→';
+      margin-left: var(--space-8);
+      transition: transform var(--duration-fast) var(--ease-standard);
+    }
+
+    .article-card:hover .article-card__link::after {
+      transform: translateX(4px);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--color-surface);
+      padding: var(--space-80) var(--space-24);
+    }
+
+    .contact__container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact__info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+      margin-top: var(--space-48);
+    }
+
+    @media (min-width: 768px) {
+      .contact__info {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .contact__item {
+      padding: var(--space-24);
+    }
+
+    .contact__icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto var(--space-16);
+      background: var(--color-secondary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-2xl);
+    }
+
+    .contact__label {
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+      font-size: var(--font-size-base);
+    }
+
+    .contact__value {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+    }
+
+    .contact__social {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-24);
+      margin-top: var(--space-48);
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--color-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: var(--font-size-xl);
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .social-link:hover {
+      background: var(--color-primary);
+      color: white;
+      transform: translateY(-4px);
+    }
+
+    /* Footer */
+    .footer {
+      padding: var(--space-40) var(--space-24);
+      text-align: center;
+      border-top: 1px solid var(--color-card-border);
+    }
+
+    .footer__text {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 767px) {
+      .hero__title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .hero__subtitle {
+        font-size: var(--font-size-md);
+      }
+
+      .section__title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .section {
+        padding: var(--space-48) var(--space-16);
+      }
+
+      .nav__container {
+        padding: var(--space-12) var(--space-16);
+      }
+    }
+
+    /* Overlay for mobile menu */
+    .nav__overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--duration-normal) var(--ease-standard);
+      z-index: 999;
+    }
+
+    .nav__overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="#hero" class="nav__brand">刺青工作室</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="nav__menu" id="navMenu">
+      <a href="#hero" class="nav__link">首頁</a>
+      <a href="#services" class="nav__link">服務項目</a>
+      <a href="#projects" class="nav__link">作品工具</a>
+      <a href="#appointment" class="nav__link">預約服務</a>
+      <a href="#articles" class="nav__link">文章分享</a>
+      <a href="#contact" class="nav__link">聯絡我們</a>
+    </div>
+  </nav>
+
+  <!-- Overlay for mobile menu -->
+  <div class="nav__overlay" id="navOverlay"></div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">專業刺青設計服務</h1>
+      <p class="hero__subtitle">將您的靈感轉化為獨一無二的藝術作品<br>專業技術 · 客製設計 · 完美呈現</p>
+      <a href="#appointment" class="hero__cta">立即預約</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <div class="section__header">
+      <h2 class="section__title">服務項目</h2>
+      <p class="section__subtitle">提供全方位的專業刺青服務，滿足您的各種需求</p>
+    </div>
+    <div class="services__grid">
+      <div class="service-card">
+        <div class="service-card__icon">🎨</div>
+        <h3 class="service-card__title">刺青設計</h3>
+        <p class="service-card__description">客製化刺青圖案設計，將您的想法完美呈現</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon">✏️</div>
+        <h3 class="service-card__title">圖稿繪製</h3>
+        <p class="service-card__description">專業手繪與數位圖稿，細節精緻到位</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon">💬</div>
+        <h3 class="service-card__title">諮詢服務</h3>
+        <p class="service-card__description">刺青風格與位置建議，提供專業意見</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <div class="section__header">
+      <h2 class="section__title">作品與工具</h2>
+      <p class="section__subtitle">探索我們的作品集與專業工具，點擊卡片進入詳細頁面</p>
+    </div>
+    <div class="projects__grid">
+      <a href="project1.html" class="project-card">
+        <div class="project-card__image">🎨</div>
+        <div class="project-card__content">
+          <h3 class="project-card__title">刺青作品集</h3>
+          <p class="project-card__description">精選刺青作品展示與風格介紹</p>
+          <span class="project-card__link">查看詳情</span>
+        </div>
+      </a>
+      <a href="project2.html" class="project-card">
+        <div class="project-card__image">📅</div>
+        <div class="project-card__content">
+          <h3 class="project-card__title">預約系統</h3>
+          <p class="project-card__description">線上預約時間管理工具</p>
+          <span class="project-card__link">查看詳情</span>
+        </div>
+      </a>
+      <a href="project3.html" class="project-card">
+        <div class="project-card__image">🖼️</div>
+        <div class="project-card__content">
+          <h3 class="project-card__title">圖片生成器</h3>
+          <p class="project-card__description">AI輔助設計圖像生成</p>
+          <span class="project-card__link">查看詳情</span>
+        </div>
+      </a>
+      <a href="project4.html" class="project-card">
+        <div class="project-card__image">📝</div>
+        <div class="project-card__content">
+          <h3 class="project-card__title">提示詞庫</h3>
+          <p class="project-card__description">創作靈感提示詞管理</p>
+          <span class="project-card__link">查看詳情</span>
+        </div>
+      </a>
+      <a href="project5.html" class="project-card">
+        <div class="project-card__image">👥</div>
+        <div class="project-card__content">
+          <h3 class="project-card__title">客戶管理</h3>
+          <p class="project-card__description">客戶資料與預約記錄</p>
+          <span class="project-card__link">查看詳情</span>
+        </div>
+      </a>
+      <a href="project6.html" class="project-card">
+        <div class="project-card__image">💰</div>
+        <div class="project-card__content">
+          <h3 class="project-card__title">價格計算機</h3>
+          <p class="project-card__description">刺青價格估算工具</p>
+          <span class="project-card__link">查看詳情</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Appointment Section -->
+  <section class="appointment" id="appointment">
+    <div class="appointment__container">
+      <div class="section__header">
+        <h2 class="section__title">預約服務</h2>
+        <p class="section__subtitle">填寫表單預約您的刺青時間，我們將盡快與您聯繫</p>
+      </div>
+      <form class="appointment__form" id="appointmentForm">
+        <div class="form-group">
+          <label class="form-label" for="name">姓名</label>
+          <input type="text" id="name" class="form-input" placeholder="請輸入您的姓名" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">電子郵件</label>
+          <input type="email" id="email" class="form-input" placeholder="example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">需求說明</label>
+          <textarea id="message" class="form-textarea" placeholder="請描述您想要的刺青風格、位置等詳細資訊..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">提交預約</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section class="section" id="articles">
+    <div class="section__header">
+      <h2 class="section__title">文章分享</h2>
+      <p class="section__subtitle">刺青知識、保養技巧與風格介紹</p>
+    </div>
+    <div class="articles__grid">
+      <div class="article-card">
+        <div class="article-card__image">📖</div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">刺青前必知的5件事</h3>
+          <p class="article-card__excerpt">準備好要刺青了嗎？這些重要事項請務必了解，讓您的刺青體驗更加順利...</p>
+          <a href="#" class="article-card__link">閱讀更多</a>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-card__image">🌟</div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">刺青風格完整指南</h3>
+          <p class="article-card__excerpt">從傳統到現代，探索各種刺青風格的特色與適合的設計主題...</p>
+          <a href="#" class="article-card__link">閱讀更多</a>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-card__image">💧</div>
+        <div class="article-card__content">
+          <h3 class="article-card__title">刺青後的保養秘訣</h3>
+          <p class="article-card__excerpt">正確的保養能讓您的刺青保持最佳狀態，這些技巧不可不知...</p>
+          <a href="#" class="article-card__link">閱讀更多</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact__container">
+      <div class="section__header">
+        <h2 class="section__title">聯絡我們</h2>
+        <p class="section__subtitle">歡迎透過以下方式與我們聯繫</p>
+      </div>
+      <div class="contact__info">
+        <div class="contact__item">
+          <div class="contact__icon">📧</div>
+          <div class="contact__label">電子郵件</div>
+          <div class="contact__value">contact@example.com</div>
+        </div>
+        <div class="contact__item">
+          <div class="contact__icon">📱</div>
+          <div class="contact__label">聯絡電話</div>
+          <div class="contact__value">+886 912 345 678</div>
+        </div>
+        <div class="contact__item">
+          <div class="contact__icon">📍</div>
+          <div class="contact__label">工作室地址</div>
+          <div class="contact__value">台灣台北市</div>
+        </div>
+      </div>
+      <div class="contact__social">
+        <a href="#" class="social-link" aria-label="Facebook">f</a>
+        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+        <a href="#" class="social-link" aria-label="LINE">💬</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer__text">&copy; 2025 刺青工作室. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const navOverlay = document.getElementById('navOverlay');
+    const navLinks = document.querySelectorAll('.nav__link');
+
+    function toggleMenu() {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      navOverlay.classList.toggle('active');
+      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    navOverlay.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navMenu.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Form Submission Handler
+    const appointmentForm = document.getElementById('appointmentForm');
+    appointmentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      alert(`預約提交成功！\n\n姓名：${name}\n電子郵件：${email}\n需求說明：${message}\n\n我們將盡快與您聯繫，謝謝！`);
+      
+      // Reset form
+      appointmentForm.reset();
+    });
+
+    // Smooth scroll for navigation links (fallback for older browsers)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.length > 1) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+
+    // Add scroll effect to navigation
+    let lastScroll = 0;
+    const nav = document.querySelector('.nav');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        nav.style.boxShadow = 'var(--shadow-md)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+  </script>
+</body>
+</html>
